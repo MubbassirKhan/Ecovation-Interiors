@@ -146,13 +146,20 @@ export const TEAM = [
   {
     name: 'Sharukh',
     role: 'Founder & Operations Head',
-    image: '/Ecovation%20Images/founder-sahruk.jpeg',
+    image: '/Ecovation%20Images/team/founder/sharukh.jpeg',
+    featured: true,
     bio: 'Sharukh is the visionary backbone of Ecovation, shaping the company\'s execution ethos with foresight, discipline and a commitment to excellence. His hands-on operational mastery turns complex ideas into precisely delivered spaces.',
   },
   {
     name: 'Nida',
     role: 'Co-Founder & Business Development Head',
-    image: '/Ecovation%20Images/co-founder-nida.jpeg',
+    image: '/Ecovation%20Images/team/co-founder/nida.jpeg',
+    featured: true,
     bio: 'Nida blends business insight with a natural flair for building meaningful client relationships. She transforms opportunities into long-term partnerships and helps ensure every project reflects Ecovation\'s elegance, precision and innovation.',
   },
+  { name: 'Naveen', role: 'Project Manager', image: '/Ecovation%20Images/team/management/naveen-pm.jpeg', bio: 'Naveen coordinates people, timelines and project details to keep every stage of delivery moving with clarity and care.' },
+  { name: 'Vishaal', role: 'Project Manager', image: '/Ecovation%20Images/team/management/vishaal-pm.jpeg', bio: 'Vishaal brings structure to project delivery, connecting design intent with smooth coordination and dependable execution.' },
+  { name: 'Rakesh', role: 'Purchase', image: '/Ecovation%20Images/team/operations/rakesh-purchase.jpeg', bio: 'Rakesh manages material sourcing and procurement, helping each project receive the right products at the right time.' },
+  { name: 'Sneha', role: 'Designer', image: '/Ecovation%20Images/team/design/sneha-designer.jpeg', bio: 'Sneha develops thoughtful design details that bring together material, colour and the character of each space.' },
+  { name: 'Haresh', role: 'Accounts', image: '/Ecovation%20Images/team/accounts/haresh-accounts.jpeg', bio: 'Haresh supports the team through careful accounts management and clear financial coordination across projects.' },
 ];

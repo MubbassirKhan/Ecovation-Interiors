@@ -89,7 +89,7 @@ export default function Contact() {
     <>
       <section className="page-hero contact-hero">
         <div className="contact-hero__media" aria-hidden="true">
-          <img src="/Ecovation%20Images/Workspace/contact-hero-hd.png" alt="" loading="eager" decoding="async" onError={onImgError} />
+          <img src="/Ecovation%20Images/workspace/contact-hero-hd.png" alt="" loading="eager" decoding="async" onError={onImgError} />
           <div className="contact-hero__veil" aria-hidden="true" />
         </div>
         <div className="page-hero__inner container">
