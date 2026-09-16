@@ -73,7 +73,6 @@ function Hero() {
           <a className="workspace-button" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat <span>↗</span></a>
         </div>
       </div>
-      <div className="workspace-hero__scroll" aria-hidden="true"><span>Scroll to explore</span><i /></div>
     </section>
   );
 }

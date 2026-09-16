@@ -57,7 +57,6 @@ export default function Workspaces() {
             </div>
           </Reveal>
         </div>
-        <div className="workspace-hero__scroll" aria-hidden="true"><span>Scroll to explore</span><i /></div>
       </section>
 
       <section className="workspace-stats" aria-label="Workspace service highlights">
