@@ -16,6 +16,7 @@ export const IMAGES = {
   collaboration: local('workspace/work5.jpg'),
   reception: local('workspace/work6.jpg'),
   acousticPanels: local('acoustic-panels/cards.jpg'),
+  acousticHero: local('acoustic-panels/ceiling2.jpg'),
   baffles: local('acoustic-panels/ceiling1.webp'),
   clouds: local('acoustic-panels/ceiling2.jpg'),
   screens: local('acoustic-panels/wall1.webp'),

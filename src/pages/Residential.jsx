@@ -67,7 +67,7 @@ function HeroSection() {
       </div>
       <div className="workspace-hero__inner container">
         <Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />Residential interiors</p></Reveal>
-        <Reveal delay={0.08}><h1>Residential<br />interiors<br /><em>designed around you.</em></h1></Reveal>
+        <Reveal delay={0.08}><h1><span>Residential interiors</span><em>designed around you.</em></h1></Reveal>
         <Reveal delay={0.16}><p>From living spaces to bedrooms and home offices, Ecovation creates interiors around how you and your family use the space.</p></Reveal>
         <div className="workspace-hero__actions">
           <Link className="workspace-button workspace-button--primary" to="/contact">Get a quote <span>↗</span></Link>

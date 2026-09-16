@@ -1,5 +1,3 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import Reveal from '../components/Reveal';
 import ParallaxImage from '../components/ParallaxImage';
 import CTASection from '../components/CTASection';
@@ -15,6 +13,17 @@ import { CONTACT } from '../data/siteData';
 import { onImgError } from '../utils/image';
 import usePageMeta from '../utils/usePageMeta';
 
+const PROCESS = [
+  ['Collection', 'PET bottles are collected from post-consumer recycling partners across India.'],
+  ['Shredding', 'Bottles are shredded, washed and cleaned into pure PET flakes.'],
+  ['Fiber extrusion', 'The flakes are melted and extruded into fine polyester fibers.'],
+  ['Board forming', 'Fibers are thermally bonded under high pressure into rigid acoustic boards.'],
+  ['Color & finish', 'Panels are finished in 120+ colours with smooth, pin-receptive and printable surfaces.'],
+  ['CNC cutting', 'Precision cutting creates custom shapes, sizes and architectural designs.'],
+  ['QC testing', 'NRC, fire resistance and dimensional accuracy are tested to standard.'],
+  ['Installation', 'The finished solution is delivered and installed at your space.'],
+];
+
 /**
  * AcousticPanels — the PET acoustic panels page.
  * Hero, an editorial "what PET is", the four products as large cinematic
@@ -27,10 +36,11 @@ export default function AcousticPanels() {
   );
 
   return (
-    <>
+    <div className="acoustic-page">
       <Hero />
       <WhatIsPET />
       <Products />
+      <Process />
       <Benefits />
       <PanelDetails />
       <CTASection
@@ -43,88 +53,37 @@ export default function AcousticPanels() {
         ctaLabel="Talk acoustics"
         to="/contact"
       />
-    </>
+    </div>
   );
 }
 
 function Hero() {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '24%']);
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-
   return (
-    <section className="page-hero ac-hero" ref={heroRef}>
-      <div className="page-hero__media ac-hero__media" aria-hidden="true">
-        <motion.img
-          className="page-hero__img"
-          src={IMAGES.baffles}
-          alt=""
-          style={{ y: imgY }}
-          loading="eager"
-          decoding="async"
-          onError={onImgError}
-        />
-        <div className="page-hero__veil" aria-hidden="true" />
+    <section className="workspace-hero ac-hero">
+      <div className="workspace-hero__media" aria-hidden="true">
+        <img src={IMAGES.acousticHero} alt="" loading="eager" decoding="async" onError={onImgError} />
+        <div className="workspace-hero__veil" />
       </div>
-
-      <motion.div className="page-hero__inner container" style={{ y: contentY, opacity: fade }}>
-        <Reveal>
-          <p className="kicker">
-            <span className="kicker__dot" aria-hidden="true" />
-            Acoustic solutions
-          </p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h1 className="page-hero__title">
-            <span className="page-hero__uptitle">PET</span>
-            Acoustic Panels
-          </h1>
-        </Reveal>
-        <Reveal delay={0.16}>
-          <p className="page-hero__lede">
-            Advanced sound solutions made from recycled PET materials for
-            superior acoustic performance and sustainable interior design.
-          </p>
-        </Reveal>
-      </motion.div>
+      <div className="workspace-hero__inner container">
+        <Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />Acoustic solutions</p></Reveal>
+        <Reveal delay={0.08}><h1>PET acoustic <em>panels</em></h1></Reveal>
+        <Reveal delay={0.16}><p>Advanced sound solutions made from recycled PET materials for superior acoustic performance and sustainable interior design.</p></Reveal>
+        <div className="workspace-hero__actions">
+          <a className="workspace-button workspace-button--primary" href="/contact">Get a quote <span>↗</span></a>
+          <a className="workspace-button" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat <span>↗</span></a>
+        </div>
+      </div>
+      <div className="workspace-hero__scroll" aria-hidden="true"><span>Scroll to explore</span><i /></div>
     </section>
   );
 }
 
 function WhatIsPET() {
   return (
-    <section className="pet container">
-      <div className="pet__grid">
-        <Reveal className="pet__intro">
-          <p className="kicker">
-            <span className="kicker__dot" aria-hidden="true" />
-            What PET is
-          </p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="pet__heading">
-            Sound-absorbing boards, <em>pressed from recycled bottles</em>.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.16}>
-          <p className="pet__body">{PET_NOTE}</p>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <ul className="pet__solutions">
-            {[
-              'Acoustic baffles',
-              'Cell ceiling systems',
-              'CNC cut panels',
-              'Acoustic screens',
-              'Acoustic clouds',
-              'Printed panels',
-            ].map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
-        </Reveal>
+    <section className="acoustic-intro">
+      <div className="container">
+        <Reveal className="acoustic-intro__heading"><p className="kicker"><span className="kicker__dot" aria-hidden="true" />What PET is</p><h2>Sound-absorbing boards, <em>pressed from recycled bottles.</em></h2></Reveal>
+        <Reveal className="acoustic-intro__copy" delay={0.1}><p>{PET_NOTE}</p><ul>{['At least 75% recycled PET', 'Lightweight and durable', 'Low VOC and mold-resistant', 'Fire rated to EN13501-1'].map(item => <li key={item}><span aria-hidden="true" />{item}</li>)}</ul></Reveal>
       </div>
     </section>
   );
@@ -133,6 +92,7 @@ function WhatIsPET() {
 function Products() {
   return (
     <section className="ac-products" id="products">
+      <div className="container ac-section-heading"><Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />What we make</p><h2>Acoustic solutions for <em>better spaces.</em></h2></Reveal></div>
       {ACOUSTIC_SOLUTIONS.map((p, i) => (
         <article className="ac-product" id={p.id} key={p.id}>
           <div className="container">
@@ -148,12 +108,7 @@ function Products() {
               </Reveal>
 
               <div className="ac-product__content">
-                <Reveal>
-                  <p className="kicker">
-                    <span className="kicker__dot" aria-hidden="true" />
-                    {p.index} — {p.title.toLowerCase()}
-                  </p>
-                </Reveal>
+                <Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />{p.title}</p></Reveal>
                 <Reveal delay={0.08}>
                   <h2 className="ac-product__title">{p.title}</h2>
                 </Reveal>
@@ -187,14 +142,11 @@ function Benefits() {
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="ac-benefits__title">What good acoustics give you</h2>
+          <h2 className="ac-benefits__title">What good acoustics <em>give you.</em></h2>
         </Reveal>
         <div className="ac-benefits__grid">
           {ACOUSTIC_BENEFITS.map((b, i) => (
             <Reveal key={b.title} className="ac-benefits__card" delay={i * 0.06}>
-              <span className="ac-benefits__num" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}
-              </span>
               <h3 className="ac-benefits__card-title">{b.title}</h3>
               <p className="ac-benefits__card-body">{b.body}</p>
             </Reveal>
@@ -220,21 +172,18 @@ function PanelDetails() {
         </Reveal>
         <div className="ac-benefits__grid">
           <Reveal className="ac-benefits__card">
-            <span className="ac-benefits__num" aria-hidden="true">01</span>
             <h3 className="ac-benefits__card-title">Product specifications</h3>
             <ul className="ac-product__notes">
               {PANEL_SPECS.map((spec) => <li key={spec}>{spec}</li>)}
             </ul>
           </Reveal>
           <Reveal className="ac-benefits__card" delay={0.08}>
-            <span className="ac-benefits__num" aria-hidden="true">02</span>
             <h3 className="ac-benefits__card-title">Perfect for every space</h3>
             <ul className="ac-product__notes">
               {PANEL_APPLICATIONS.map((application) => <li key={application}>{application}</li>)}
             </ul>
           </Reveal>
           <Reveal className="ac-benefits__card" delay={0.16}>
-            <span className="ac-benefits__num" aria-hidden="true">03</span>
             <h3 className="ac-benefits__card-title">Fully customizable</h3>
             <p className="ac-benefits__card-body">
               120+ colours, CNC cutting, printed graphics, custom sizes, integrated lighting and installation across walls, ceilings, baffles and screens.
@@ -244,4 +193,8 @@ function PanelDetails() {
       </div>
     </section>
   );
+}
+
+function Process() {
+  return <section className="ac-process"><div className="container"><Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />Circular economy</p><h2>From bottle <em>to product.</em></h2><p className="ac-process__lede">Every panel starts as a recycled PET bottle and is transformed into a premium acoustic solution.</p></Reveal><div className="ac-process__grid">{PROCESS.map(([title, body], index) => <Reveal className="ac-process__item" key={title} delay={index * 0.03}><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{title}</h3><p>{body}</p></div></Reveal>)}</div></div></section>;
 }
