@@ -35,7 +35,7 @@ export default function ProjectsPage() {
       <section className="page-hero pg-hero projects-hero">
         <div className="projects-hero__media" aria-hidden="true">
           <img
-            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2400&q=90"
+            src={IMAGES.aboutDetail}
             alt=""
             loading="eager"
             decoding="async"

@@ -24,11 +24,11 @@ const SOLUTIONS = [
 ];
 
 const STORY_IMAGES = [
-  ['https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80', 'Modern office design'],
-  ['https://ecovation.co.in/images/Projects/project11.jpeg', 'Creative workspace'],
-  ['https://ecovation.co.in/images/Projects/project12.jpeg', 'Open office'],
-  ['https://ecovation.co.in/images/Projects/project13.jpeg', 'Meeting room'],
-  ['https://ecovation.co.in/images/Projects/project14.jpeg', 'Collaborative space'],
+  [IMAGES.heroLocal, 'Modern office design'],
+  [IMAGES.openOffice, 'Creative workspace'],
+  [IMAGES.meetingRoom, 'Open office'],
+  [IMAGES.collaboration, 'Meeting room'],
+  [IMAGES.reception, 'Collaborative space'],
 ];
 
 export default function Workspaces() {
@@ -43,7 +43,7 @@ export default function Workspaces() {
     <>
       <section className="workspace-hero">
         <div className="workspace-hero__media" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2400&q=90" alt="" loading="eager" decoding="async" />
+          <img src={IMAGES.workspaceHero} alt="" loading="eager" decoding="async" />
           <div className="workspace-hero__veil" />
         </div>
         <div className="workspace-hero__inner container">

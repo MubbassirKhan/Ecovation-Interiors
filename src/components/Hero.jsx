@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="hero__media">
         <motion.img
           className="hero__img"
-          src={IMAGES.hero}
+          src={IMAGES.heroLocal}
           alt="Open-plan office with natural light and calm, considered workstations"
           fetchPriority="high"
           loading="eager"

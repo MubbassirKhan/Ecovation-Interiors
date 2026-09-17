@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Reveal from '../components/Reveal';
 import { CONTACT, HIGHLIGHTS } from '../data/siteData';
+import { IMAGES } from '../data/projects';
 import { onImgError } from '../utils/image';
 import usePageMeta from '../utils/usePageMeta';
 
@@ -89,7 +90,7 @@ export default function Contact() {
     <>
       <section className="page-hero contact-hero">
         <div className="contact-hero__media" aria-hidden="true">
-          <img src="/Ecovation%20Images/workspace/contact-hero-hd.png" alt="" loading="eager" decoding="async" onError={onImgError} />
+          <img src={IMAGES.contactHero} alt="" loading="eager" decoding="async" onError={onImgError} />
           <div className="contact-hero__veil" aria-hidden="true" />
         </div>
         <div className="page-hero__inner container">

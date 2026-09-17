@@ -25,8 +25,8 @@ const RESIDENTIAL_IMAGES = [
   [IMAGES.residentialLiving, 'Warm living area with a refined material palette'],
   [IMAGES.residentialBedroom, 'A quiet bedroom designed for rest'],
   [IMAGES.residentialOffice, 'A focused home office with considered acoustic details'],
-  ['/Ecovation%20Images/residential/resident5.jpg', 'Residential details made for everyday living'],
-  ['/Ecovation%20Images/residential/resident3', 'A considered residential interior'],
+  [IMAGES.residentialDetails, 'Residential details made for everyday living'],
+  [IMAGES.residentialThird, 'A considered residential interior'],
 ];
 
 const FEATURES = [

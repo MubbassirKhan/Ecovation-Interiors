@@ -1,29 +1,31 @@
-// Curated imagery — stable Unsplash CDN URLs (no local assets required).
-// Imagery is workspace / office / acoustic-interior focused.
-const u = (id, w = 2400) =>
-  `https://images.unsplash.com/${id}?q=80&w=${w}&auto=format&fit=crop`;
 const local = (path) => encodeURI(`/Ecovation Images/${path}`);
 
 export const IMAGES = {
-  hero: u('photo-1497366216548-37526070297c', 2400),
+  hero: local('general/hero.jpg'),
+  heroLocal: local('general/hero.jpg'),
+  aboutDetail: local('general/about-detail.jpg'),
+  workspaceHero: local('workspace/workspace-hero.jpg'),
   heroVideo: local('hero-video.mp4'),
   studio: local('general/about.jpg'),
-  studioSmall: local('Workspace/work2.jpg'),
-  contact: local('Workspace/work3.jpg'),
+  studioSmall: local('workspace/work2.jpg'),
+  contact: local('workspace/work3.jpg'),
+  contactHero: local('workspace/contact-hero-hd.png'),
   // Workspaces page / acoustic pages
-  openOffice: local('Workspace/work1.jpg'),
-  meetingRoom: local('Workspace/work4.jpg'),
-  collaboration: local('Workspace/work5.jpg'),
-  reception: local('Workspace/work6.jpg'),
+  openOffice: local('workspace/work1.jpg'),
+  meetingRoom: local('workspace/work4.jpg'),
+  collaboration: local('workspace/work5.jpg'),
+  reception: local('workspace/work6.jpg'),
   acousticPanels: local('acoustic-panels/cards.jpg'),
   acousticHero: local('acoustic-panels/ceiling2.jpg'),
   baffles: local('acoustic-panels/ceiling1.webp'),
   clouds: local('acoustic-panels/ceiling2.jpg'),
   screens: local('acoustic-panels/wall1.webp'),
   customAcoustics: local('acoustic-panels/wall2.jpg'),
-  residentialLiving: local('Residential/resident1.jpg'),
-  residentialBedroom: local('Residential/resident2.jpg'),
-  residentialOffice: local('Residential/resident4.jpg'),
+  residentialLiving: local('residential/resident1.jpg'),
+  residentialBedroom: local('residential/resident2.jpg'),
+  residentialOffice: local('residential/resident4.jpg'),
+  residentialDetails: local('residential/resident5.jpg'),
+  residentialThird: local('residential/resident3.jpg'),
   teamFounder: local('team/founder/sharukh.jpeg'),
   teamCoFounder: local('team/co-founder/nida.jpeg'),
 };
@@ -52,11 +54,11 @@ export const PROJECTS = [
       'Open office environments are one of Ecovation\'s featured workspace typologies, supported by smart space planning and acoustic solutions.',
     approach:
       'Ecovation approaches open office areas through space planning, acoustic comfort and sustainable materials.',
-    heroImage: local('Projects/open-office.jpeg'),
+    heroImage: local('projects/open-office.jpeg'),
     gallery: [
-      local('Workspace/work2.jpg'),
-      local('Workspace/work3.jpg'),
-      local('Workspace/work4.jpg'),
+      local('workspace/work2.jpg'),
+      local('workspace/work3.jpg'),
+      local('workspace/work4.jpg'),
     ],
   },
   {
@@ -74,11 +76,11 @@ export const PROJECTS = [
       'Meeting rooms are a featured Ecovation workspace solution, with planning focused on clear speech, privacy and acoustic comfort.',
     approach:
       'The live offering describes meeting rooms as spaces for clear speech, privacy and a premium client experience.',
-    heroImage: local('Projects/meeting-room.jpeg'),
+    heroImage: local('projects/meeting-room.jpeg'),
     gallery: [
-      local('Workspace/work6.jpg'),
-      local('Workspace/work8.jpg'),
-      local('Workspace/work9.jpg'),
+      local('workspace/work6.jpg'),
+      local('workspace/work8.jpg'),
+      local('workspace/work9.jpg'),
     ],
   },
   {
@@ -96,11 +98,11 @@ export const PROJECTS = [
       'Collaboration zones are part of Ecovation\'s workspace solutions, balancing teamwork with acoustic comfort.',
     approach:
       'Ecovation uses smart space planning and acoustic solutions to support collaboration and well-being.',
-    heroImage: local('Projects/collaboration-zone.jpeg'),
+    heroImage: local('projects/collaboration-zone.jpeg'),
     gallery: [
-      local('Workspace/work9.jpg'),
-      local('Workspace/work10.jpg'),
-      local('Workspace/work11.jpg'),
+      local('workspace/work9.jpg'),
+      local('workspace/work10.jpg'),
+      local('workspace/work11.jpg'),
     ],
   },
   {
@@ -118,11 +120,11 @@ export const PROJECTS = [
       'Reception and lobby environments are designed around brand identity, spatial flow and acoustic comfort.',
     approach:
       'Ecovation identifies reception and lobby spaces as a core workspace application.',
-    heroImage: local('Projects/reception.jpeg'),
+    heroImage: local('projects/reception.jpeg'),
     gallery: [
-      local('Workspace/work11.jpg'),
-      local('Workspace/work12.jpg'),
-      local('Workspace/work13.jpg'),
+      local('workspace/work11.jpg'),
+      local('workspace/work12.jpg'),
+      local('workspace/work13.jpg'),
     ],
   },
   {
@@ -140,11 +142,11 @@ export const PROJECTS = [
       'Breakout spaces are a featured workspace solution for relaxed resets and creative ideas.',
     approach:
       'The offering combines space planning with acoustic solutions to support comfort and collaboration.',
-    heroImage: local('Projects/breakout-space.jpeg'),
+    heroImage: local('projects/breakout-space.jpeg'),
     gallery: [
-      local('Workspace/work13.jpg'),
-      local('Workspace/work14.jpg'),
-      local('Workspace/work15.jpg'),
+      local('workspace/work13.jpg'),
+      local('workspace/work14.jpg'),
+      local('workspace/work15.jpg'),
     ],
   },
   {
@@ -162,11 +164,11 @@ export const PROJECTS = [
       'Ecovation provides sustainable workplace design and fit-outs with smart space planning, ergonomic layouts and acoustic comfort.',
     approach:
       'The live workspace service covers discovery, space planning, design development, 3D visualisation, execution and handover.',
-    heroImage: local('Projects/workspace-interior.jpeg'),
+    heroImage: local('projects/workspace-interior.jpeg'),
     gallery: [
-      local('Workspace/work1.jpg'),
-      local('Workspace/work5.jpg'),
-      local('Workspace/work10.jpg'),
+      local('workspace/work1.jpg'),
+      local('workspace/work5.jpg'),
+      local('workspace/work10.jpg'),
     ],
   },
 ];
