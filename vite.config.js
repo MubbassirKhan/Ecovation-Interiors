@@ -4,7 +4,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
 
-  base: '/Ecovation-Test1/',
+  // Custom domain: https://ecovation.co.in/
+  base: '/',
 
   build: {
     target: 'es2022',
