@@ -4495,7 +4495,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  content: url('/Ecovation%20Images/workspace/office-detail.jpg');
+  content: var(--projects-hero-image);
   object-position: center 46%;
 }
 

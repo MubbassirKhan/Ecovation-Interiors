@@ -55,7 +55,7 @@ export const MARQUEE_WORDS = [
 
 export const LOGO = {
   /** Official logo mark — the client's own asset, never modified. */
-  src: '/images/logo.png',
+  src: encodeURI(`${import.meta.env.BASE_URL}images/logo.png`),
   alt: 'Ecovation — sustainable interiors and PET acoustic solutions, Bengaluru',
 };
 

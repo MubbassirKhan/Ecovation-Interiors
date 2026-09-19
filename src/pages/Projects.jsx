@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
-import { PROJECTS, IMAGES } from '../data/projects';
+import { local, PROJECTS, IMAGES } from '../data/projects';
 import { CONTACT } from '../data/siteData';
 import usePageMeta from '../utils/usePageMeta';
 
@@ -37,6 +37,7 @@ export default function ProjectsPage() {
           <img
             src={IMAGES.aboutDetail}
             alt=""
+            style={{ '--projects-hero-image': `url("${local('workspace/office-detail.jpg')}")` }}
             loading="eager"
             decoding="async"
             fetchPriority="high"

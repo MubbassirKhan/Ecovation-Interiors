@@ -1,6 +1,4 @@
-// const local = (path) => encodeURI(`/Ecovation Images/${path}`);
-
-const local = (path) =>
+export const local = (path) =>
   encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/${path}`);
 
 export const IMAGES = {
