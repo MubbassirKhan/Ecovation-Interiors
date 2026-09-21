@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Reveal from './Reveal';
-import { KEY_CAPABILITIES } from '../data/siteData';
 import { IMAGES } from '../data/projects';
 import { onImgError } from '../utils/image';
 
@@ -55,21 +54,21 @@ export default function Studio() {
           </Reveal>
           <Reveal delay={0.16} className="studio__body">
             <p>
-              Ecovation combines sustainable materials, thoughtful interior design
-              and acoustic innovation to create spaces that perform beautifully.
+              At Ecovation Interiors LLP, we believe exceptional interiors are created when design thinking meets disciplined execution.
             </p>
             <p>
-              From turnkey execution and residential interiors to PET acoustic panels,
-              CNC cutting, printing and ceiling solutions, each offering is designed
-              around the needs of the space.
+              Our approach combines creativity, technical understanding and on-site expertise to deliver spaces that are visually distinctive, highly functional and built to last.
             </p>
-          </Reveal>
-          <Reveal delay={0.1} className="studio__pillars">
-            {KEY_CAPABILITIES.map((p) => (
-              <span className="studio__pillar" key={p}>
-                {p}
-              </span>
-            ))}
+            <p>
+              From a single acoustic wall to a complete interior transformation, we bring the same attention to detail to every project.
+            </p>
+            <h2 className="studio__heading studio__sequence" aria-label="Design. Detail. Execution.">
+              <span>Design</span>
+              <span className="studio__sequence-arrow" aria-hidden="true">→</span>
+              <span>Detail</span>
+              <span className="studio__sequence-arrow" aria-hidden="true">→</span>
+              <span>Execution</span>
+            </h2>
           </Reveal>
         </div>
       </div>

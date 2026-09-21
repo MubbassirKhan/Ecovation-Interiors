@@ -1,41 +1,21 @@
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
 import ClientMarquee from '../components/ClientMarquee';
+import MissionVision from '../components/MissionVision';
 import { IMAGES } from '../data/projects';
-import { CONTACT, MISSION_VISION, TEAM } from '../data/siteData';
+import { CONTACT, TEAM } from '../data/siteData';
 import usePageMeta from '../utils/usePageMeta';
+import { onImgError } from '../utils/image';
 
 const VALUES = [
-  {
-    index: '01',
-    title: 'Sustainability First',
-    body: 'Every material choice reflects our commitment to responsible sourcing and circular economy principles.',
-  },
-  {
-    index: '02',
-    title: 'Acoustic Expertise',
-    body: 'Deep knowledge of acoustic performance, NRC ratings and how sound shapes human experience.',
-  },
-  {
-    index: '03',
-    title: 'Design Precision',
-    body: 'Every space is planned with intention - proportions, light, flow and material harmony considered together.',
-  },
-  {
-    index: '04',
-    title: 'Execution Discipline',
-    body: 'On-site coordination, quality checks and accountable delivery on every project we undertake.',
-  },
-  {
-    index: '05',
-    title: 'Customization Depth',
-    body: '120+ panel colors, CNC cutting, printing and embossing for spaces that are genuinely unique.',
-  },
-  {
-    index: '06',
-    title: 'Client Focus',
-    body: 'Long-term relationships built on trust, clear communication and consistent results.',
-  },
+  { index: '01', title: 'Sustainability First', body: 'Every material choice reflects our commitment to responsible sourcing and circular economy principles.' },
+  { index: '02', title: 'Acoustic Expertise', body: 'Deep knowledge of acoustic performance, NRC ratings and how sound shapes human experience.' },
+  { index: '03', title: 'Design Precision', body: 'Every space is planned with intention - proportions, light, flow and material harmony considered together.' },
+  { index: '04', title: 'Execution Discipline', body: 'On-site coordination, quality checks and accountable delivery on every project we undertake.' },
+  { index: '05', title: 'Customization Depth', body: '120+ panel colors, CNC cutting, printing and embossing for spaces that are genuinely unique.' },
+  { index: '06', title: 'Client Focus', body: 'Long-term relationships built on trust, clear communication and consistent results.' },
 ];
 
 const PET_BENEFITS = [
@@ -53,75 +33,106 @@ export default function About() {
     'Ecovation combines sustainable materials, thoughtful interior design and acoustic innovation to create spaces that perform beautifully across India.'
   );
 
+  const featured = TEAM.filter((m) => m.featured);
+  const supporting = TEAM.filter((m) => !m.featured);
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
+  const contentY = useTransform(scrollYProgress, [0, 0.55], ['0%', '-12%']);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
     <>
-      <section className="page-hero about-hero">
-        <div className="page-hero__media" aria-hidden="true">
-          <img
+      {/* ── Hero ── */}
+      <header className="hero about-hero" id="about-top" ref={heroRef}>
+        <div className="hero__media" aria-hidden="true">
+          <motion.img
+            className="hero__img"
             src={IMAGES.aboutDetail}
             alt=""
             loading="eager"
             decoding="async"
             fetchPriority="high"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }}
+            draggable={false}
+            onError={onImgError}
+            style={{ y: imageY }}
           />
-          <div className="page-hero__veil" aria-hidden="true" />
+          <motion.div className="hero__veil" aria-hidden="true" style={{ opacity: veilOpacity }} />
         </div>
-        <div className="page-hero__inner container">
-          <Reveal>
-            <p className="kicker">
-              <span className="kicker__dot" aria-hidden="true" />
-              About Ecovation
-            </p>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h1 className="page-hero__title">
-              Designing <em>better spaces</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <p className="page-hero__lede">
+        <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
+          <motion.p className="hero__kicker" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}>
+            <span className="hero__kicker-dot" aria-hidden="true" />About Ecovation
+          </motion.p>
+          <h1 className="hero__title about-hero__title">
+            <span className="hero__line hero__line--1">
+              <motion.span className="hero__line-mask" initial={{ clipPath: 'inset(0 100% 0 0)' }} animate={{ clipPath: 'inset(0 0% 0 0)' }} transition={{ duration: 1.05, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}>
+                Designing
+              </motion.span>
+            </span>
+            <span className="hero__line hero__line--2">
+              <motion.span className="hero__line-inner" initial={{ clipPath: 'inset(0 100% 0 0)', opacity: 0 }} animate={{ clipPath: 'inset(0 0% 0 0)', opacity: 1 }} transition={{ duration: 0.72, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+                better spaces
+              </motion.span>
+            </span>
+          </h1>
+          <motion.p className="hero__sub about-hero__sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.85 }}>
               Ecovation combines sustainable materials, thoughtful interior design and acoustic innovation to create spaces that perform beautifully across India.
-            </p>
+          </motion.p>
+          <motion.div className="hero__ctas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 1.05 }}>
+            <a className="hero__cta hero__cta--primary" href="/acoustic-panels">Explore Services <span aria-hidden="true">↗</span></a>
+            <a className="hero__cta hero__cta--ghost" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat on WhatsApp <span aria-hidden="true">↗</span></a>
+          </motion.div>
+          <motion.div className="hero__rail" aria-label="About Ecovation capabilities" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1.25 }}>
+            <span>01 / Intentional design</span>
+            <span className="hero__rail-sep" aria-hidden="true">·</span>
+            <span>02 / Technical expertise</span>
+            <span className="hero__rail-sep" aria-hidden="true">·</span>
+            <span>03 / Precise execution</span>
+          </motion.div>
+        </motion.div>
+        <motion.aside className="hero__aside about-hero__aside" initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 1.0 }}>
+          <p className="hero__aside-label">The Ecovation approach</p>
+          <p className="hero__aside-copy">A considered balance of material, movement and meaning.</p>
+          <ul className="about-hero__principles">
+            <li><span>01</span>Understand the space</li>
+            <li><span>02</span>Design for the people</li>
+            <li><span>03</span>Deliver with precision</li>
+          </ul>
+        </motion.aside>
+        <div className="hero__scroll" aria-hidden="true" />
+      </header>
+
+      <section className="about-signature" aria-labelledby="about-signature-title">
+        <div className="about-signature__inner container">
+          <Reveal className="about-signature__heading">
+            <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Our approach</p>
+            <h2 id="about-signature-title">Where space becomes <em>signature.</em></h2>
           </Reveal>
-          <Reveal delay={0.24}>
-            <div className="about-hero__actions">
-              <a className="about-hero__button about-hero__button--primary" href="/acoustic-panels">Explore Services <span aria-hidden="true">↗</span></a>
-              <a className="about-hero__button" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat on WhatsApp <span aria-hidden="true">↗</span></a>
-            </div>
+          <Reveal className="about-signature__copy" delay={0.08}>
+            <p>Our work spans acoustic environments, turnkey commercial spaces and bespoke residential interiors — each approached with the same philosophy: understand the space, understand the people who experience it, and create something that feels purposeful and original.</p>
+            <p>We combine creative vision with technical expertise and precise execution, transforming concepts into spaces that are not only beautiful, but work effortlessly in the real world.</p>
+            <p>Because great design isn't about following a formula.<br />It's about creating a space that has its own identity.</p>
+          </Reveal>
+          <Reveal className="about-signature__manifesto" delay={0.16}>
+            <span>Design with intent.</span>
+            <span>Detail with purpose.</span>
+            <span>Space with character.</span>
           </Reveal>
         </div>
       </section>
 
-      <section className="about-section about-purpose container" id="purpose">
-        <Reveal>
-          <p className="kicker">
-            <span className="kicker__dot" aria-hidden="true" />
-            Our purpose
-          </p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="about-section__title">Mission <em>&amp;</em> Vision</h2>
-        </Reveal>
-        <Reveal delay={0.16}>
-          <div className="about-purpose__grid">
-            {MISSION_VISION.map((item) => (
-              <article className="about-purpose__item" key={item.tag}>
-                <p className="about-purpose__label">Our {item.tag}</p>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </Reveal>
-      </section>
+      {/* ── Mission & Vision ── */}
+      <MissionVision />
 
+      {/* ── Values ── */}
       <section className="about-values" id="values">
         <Reveal>
           <div className="about-section container">
-            <p className="kicker">
-              <span className="kicker__dot" aria-hidden="true" />
-              What drives us
-            </p>
+            <p className="kicker"><span className="kicker__dot" aria-hidden="true" />What drives us</p>
             <h2 className="about-section__title">Our <em>values</em></h2>
           </div>
         </Reveal>
@@ -136,6 +147,7 @@ export default function About() {
         </div>
       </section>
 
+      {/* ── Sustainability ── */}
       <section className="about-pet" id="sustainability">
         <div className="about-section container">
           <Reveal>
@@ -163,29 +175,111 @@ export default function About() {
         </div>
       </section>
 
-      <section className="team about-team container" id="team">
-        <div className="about-team__header">
+      {/* ═══════════════════════════════════════════════════════════
+          TEAM — Premium Editorial Design
+          Founders:  Cinematic portrait cards with hover-reveal bio
+          Supporting: Compact 5-col card grid with brass hover accent
+      ═══════════════════════════════════════════════════════════ */}
+      <section className="ecov-team" id="team" aria-label="Our team">
+
+        {/* Header */}
+        <div className="ecov-team__head container">
           <Reveal>
-            <p className="kicker">
-              <span className="kicker__dot" aria-hidden="true" />
-              Our team
-            </p>
+            <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Our team</p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h2 className="team__title">People behind <em>the spaces.</em></h2>
+            <h2 className="ecov-team__title">People behind <em>the spaces.</em></h2>
           </Reveal>
-          <Reveal delay={0.16}>
-            <p className="about-team__lede">Meet the people who bring Ecovation's design, execution and sustainable vision together.</p>
+          <Reveal delay={0.15}>
+            <p className="ecov-team__lede">
+              Meet the people who bring Ecovation's design, execution and sustainable
+              vision together — from concept to handover.
+            </p>
           </Reveal>
         </div>
-        <div className="team__lead-grid">
-          {TEAM.filter((member) => member.featured).map((member, i) => <TeamMember key={member.name} member={member} index={i} featured />)}
+
+        {/* Founders — large editorial portrait cards */}
+        <div className="ecov-team__founders container">
+          {featured.map((member, i) => (
+            <motion.article
+              key={member.name}
+              className="ecov-founder"
+              initial={{ opacity: 0, y: 48 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.9, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Portrait with hover overlay */}
+              <div className="ecov-founder__img-wrap">
+                <img
+                  src={member.image}
+                  alt={`${member.name}, ${member.role}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+                {/* Hover bio overlay slides up */}
+                <div className="ecov-founder__overlay">
+                  <p className="ecov-founder__overlay-bio">{member.bio}</p>
+                </div>
+                {/* Large index number — top-left watermark */}
+                <span className="ecov-founder__index" aria-hidden="true">0{i + 1}</span>
+              </div>
+
+              {/* Info row */}
+              <div className="ecov-founder__info">
+                <div className="ecov-founder__text">
+                  <h3 className="ecov-founder__name">{member.name}</h3>
+                  <p className="ecov-founder__role">{member.role}</p>
+                </div>
+                <span className="ecov-founder__badge">
+                  {member.role.toLowerCase().includes('co-founder') ? 'Co-Founder' : 'Founder'}
+                </span>
+              </div>
+            </motion.article>
+          ))}
         </div>
-        <div className="team__grid">
-           {TEAM.filter((member) => !member.featured).map((member, i) => <TeamMember key={member.name} member={member} index={i + 2} />)}
+
+        {/* Divider */}
+        <div className="ecov-team__divider container" aria-hidden="true">
+          <div className="ecov-team__divider-line" />
+          <span className="ecov-team__divider-label">The rest of the team</span>
+          <div className="ecov-team__divider-line" />
         </div>
+
+        {/* Supporting team — compact card grid */}
+        <div className="ecov-team__grid container">
+          {supporting.map((member, i) => (
+            <motion.article
+              key={member.name}
+              className="ecov-member"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.7, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="ecov-member__img-wrap">
+                <img
+                  src={member.image}
+                  alt={`${member.name}, ${member.role}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="ecov-member__index" aria-hidden="true">
+                  {String(i + featured.length + 1).padStart(2, '0')}
+                </span>
+              </div>
+              <div className="ecov-member__info">
+                <h3 className="ecov-member__name">{member.name}</h3>
+                <p className="ecov-member__role">{member.role}</p>
+                {member.bio && <p className="ecov-member__bio">{member.bio}</p>}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
       </section>
 
+      {/* ── Clients ── */}
       <section className="about-clients" id="clients">
         <div className="about-section container">
           <Reveal>
@@ -196,6 +290,7 @@ export default function About() {
         </div>
       </section>
 
+      {/* ── Contact ── */}
       <section className="about-contact container" id="contact">
         <div className="about-contact__header">
           <Reveal>
@@ -226,7 +321,9 @@ export default function About() {
               <span>Business hours</span>
               <p>Monday - Friday<br />9:00 AM - 6:00 PM IST</p>
             </div>
-            <a className="about-contact__whatsapp" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat with our team <span aria-hidden="true">↗</span></a>
+            <a className="about-contact__whatsapp" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">
+              Chat with our team <span aria-hidden="true">↗</span>
+            </a>
           </Reveal>
         </div>
       </section>
@@ -242,20 +339,5 @@ export default function About() {
         to="/contact"
       />
     </>
-  );
-}
-
-function TeamMember({ member, index, featured = false }) {
-  return (
-    <Reveal className={`team__member ${featured ? 'team__member--featured' : ''}`} delay={index * 0.06}>
-      <figure className="team__figure">
-        <img src={member.image} alt={`${member.name}, ${member.role}`} loading="lazy" decoding="async" />
-      </figure>
-      <div className="team__info">
-        <h3 className="team__name">{member.name}</h3>
-        <p className="team__role">{member.role}</p>
-        {member.bio && <p className="team__bio">{member.bio}</p>}
-      </div>
-    </Reveal>
   );
 }

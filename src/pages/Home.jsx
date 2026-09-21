@@ -1,6 +1,7 @@
 import Hero from '../components/Hero';
 import Marquee from '../components/Marquee';
 import Studio from '../components/Studio';
+import MissionVision from '../components/MissionVision';
 import Services from '../components/Services';
 import Projects from '../components/Projects';
 import CTASection from '../components/CTASection';
@@ -8,7 +9,6 @@ import Reveal from '../components/Reveal';
 import ClientMarquee from '../components/ClientMarquee';
 import {
   HIGHLIGHTS,
-  MISSION_VISION,
   WHY_CHOOSE,
   APPROACH_STEPS,
   CONTACT,
@@ -68,35 +68,6 @@ function Stats() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------
-   Mission & Vision — two editorial statements.
-   ------------------------------------------------------------ */
-function MissionVision() {
-  return (
-    <section className="mission container">
-      <Reveal>
-        <p className="kicker">
-          <span className="kicker__dot" aria-hidden="true" />
-          Mission &amp; Vision
-        </p>
-      </Reveal>
-      <Reveal delay={0.08}>
-        <h2 className="mission__heading">
-          Why we do <em>what we do</em>.
-        </h2>
-      </Reveal>
-      <div className="mission__grid">
-        {MISSION_VISION.map((m, i) => (
-          <Reveal key={m.tag} className="mission__card" delay={i * 0.08}>
-            <span className="mission__tag">{m.tag}</span>
-            <p className="mission__statement">{m.text}</p>
-          </Reveal>
-        ))}
       </div>
     </section>
   );

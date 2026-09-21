@@ -47,9 +47,10 @@ export const NAVIGATION = [
 export const MARQUEE_WORDS = [
   'Workspaces',
   'PET Acoustic Panels',
-  'Acoustic Planning',
-  'Recycled PET',
-  'Custom Finishes',
+  'Acoustic Treatment',
+  'Residential Interiors',
+  '30+ Repeat Clients',
+  '100% Client Satisfaction',
   'End-to-End Delivery',
 ];
 
@@ -66,8 +67,8 @@ export const LOGO = {
 export const HIGHLIGHTS = [
   { value: '15+', label: 'Years Experience' },
   { value: '200+', label: 'Projects Delivered' },
-  { value: '120+', label: 'Panel Colors' },
-  { value: '100%', label: 'Recycled PET' },
+  { value: '30+', label: 'Repeat Clients' },
+  { value: '100%', label: 'Client Satisfaction' },
 ];
 
 export const KEY_CAPABILITIES = [
@@ -80,11 +81,11 @@ export const KEY_CAPABILITIES = [
 export const MISSION_VISION = [
   {
     tag: 'Mission',
-    text: 'To transform modern interiors through sustainable materials, intelligent design and precision execution - creating spaces that improve comfort, productivity, acoustic performance and well-being.',
+    text: 'Our mission is to deliver exceptional design and build services by combining creativity, craftsmanship, and collaboration. We strive to exceed client expectations through tailored solutions, on-time project delivery, and a commitment to quality and sustainability in every space we create. To build lasting relationships by being honest, consistent, and committed to delivering on our promises.',
   },
   {
     tag: 'Vision',
-    text: 'To make sustainable, high-performance interior solutions accessible to businesses and homeowners - establishing recycled materials as the standard for modern Indian interiors.',
+    text: 'To be the leading force in innovative fit-out solutions, transforming spaces into inspiring, functional environments that elevate the everyday experience, to bring our clients’ visions to life. To create tailored, high-performance environments that reflect our clients goals, values, and ambitions.',
   },
 ];
 
@@ -146,14 +147,14 @@ export const TEAM = [
   {
     name: 'Sharukh',
     role: 'Founder & Operations Head',
-    image: '/Ecovation%20Images/team/founder/sharukh.jpeg',
+    image: '/Ecovation%20Images/team/founder/founder.jpeg',
     featured: true,
     bio: 'Sharukh is the visionary backbone of Ecovation, shaping the company\'s execution ethos with foresight, discipline and a commitment to excellence. His hands-on operational mastery turns complex ideas into precisely delivered spaces.',
   },
   {
     name: 'Nida',
     role: 'Co-Founder & Business Development Head',
-    image: '/Ecovation%20Images/team/co-founder/nida.jpeg',
+    image: '/Ecovation%20Images/team/co-founder/cofounder.jpeg',
     featured: true,
     bio: 'Nida blends business insight with a natural flair for building meaningful client relationships. She transforms opportunities into long-term partnerships and helps ensure every project reflects Ecovation\'s elegance, precision and innovation.',
   },

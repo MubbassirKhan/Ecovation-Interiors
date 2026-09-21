@@ -2,9 +2,9 @@ export const local = (path) =>
   encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/${path}`);
 
 export const IMAGES = {
-  hero: local('general/hero.jpg'),
-  heroLocal: local('general/hero.jpg'),
-  aboutDetail: local('general/about-detail.jpg'),
+  hero: `${import.meta.env.BASE_URL}logo.png`,
+  heroLocal: `${import.meta.env.BASE_URL}logo.png`,
+  aboutDetail: local('general/about.png'),
   workspaceHero: local('workspace/workspace-hero.jpg'),
   heroVideo: local('hero-video.mp4'),
   studio: local('general/about.jpg'),
@@ -27,8 +27,8 @@ export const IMAGES = {
   residentialOffice: local('residential/resident4.jpg'),
   residentialDetails: local('residential/resident5.jpg'),
   residentialThird: local('residential/resident3.jpg'),
-  teamFounder: local('team/founder/sharukh.jpeg'),
-  teamCoFounder: local('team/co-founder/nida.jpeg'),
+  teamFounder: local('team/founder/founder.jpeg'),
+  teamCoFounder: local('team/co-founder/cofounder.jpeg'),
 };
 
 /**

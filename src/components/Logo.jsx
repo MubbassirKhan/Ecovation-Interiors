@@ -30,6 +30,10 @@ export default function Logo({ className = '', href = '/', size = 56, onClick })
         draggable={false}
         onError={onImgError}
       />
+      <span className="logo__wordmark" aria-label="Ecovation Interiors">
+        <span className="logo__wordmark-top">Ecovation</span>
+        <span className="logo__wordmark-bottom">Interiors</span>
+      </span>
     </Link>
   );
 }

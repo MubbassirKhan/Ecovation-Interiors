@@ -4,14 +4,14 @@ import { IMAGES } from './projects';
 
 const u = IMAGES;
 
-/* Verified service lines shown on the Home "Our Services" section. */
+/* Verified solution lines shown on the Home section. */
 export const HOME_SERVICES = [
   {
-    id: 'interior-turnkey',
+    id: 'workspaces',
     index: '01',
-    title: 'Interior Turnkey',
+    title: 'Workspaces',
     blurb:
-      'Complete design-to-execution workspace and residential solutions, from concept to handover.',
+      'Complete design-to-execution workplace solutions, from concept planning through to fit-out and handover.',
     image: IMAGES.openOffice,
     to: '/workspaces',
   },
@@ -27,35 +27,11 @@ export const HOME_SERVICES = [
   {
     id: 'acoustic-panels',
     index: '03',
-    title: 'Acoustic Panels',
+    title: 'PET Acoustic Panels',
     blurb:
       'Advanced sound solutions made from recycled PET for superior acoustic performance and sustainable interior design.',
     image: IMAGES.acousticPanels,
     to: '/acoustic-panels',
-  },
-  {
-    id: 'cnc-cutting',
-    index: '04',
-    title: 'CNC Cutting',
-    blurb: 'Precision CNC cutting for custom patterns, shapes and architectural panel applications.',
-    image: IMAGES.customAcoustics,
-    to: '/acoustic-panels#cnc-cut-panels',
-  },
-  {
-    id: 'printed-panels',
-    index: '05',
-    title: 'Printed Panels',
-    blurb: 'High-quality printed designs on acoustic surfaces for brand expression and visual environments.',
-    image: IMAGES.customAcoustics,
-    to: '/acoustic-panels#printed-panels',
-  },
-  {
-    id: 'ceiling-solutions',
-    index: '06',
-    title: 'Ceiling Solutions',
-    blurb: 'Acoustic ceiling treatments, baffles, clouds and custom ceiling designs for any space.',
-    image: IMAGES.clouds,
-    to: '/acoustic-panels#cell-ceilings',
   },
 ];
 
