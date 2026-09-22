@@ -80,12 +80,14 @@ export const KEY_CAPABILITIES = [
 
 export const MISSION_VISION = [
   {
-    tag: 'Mission',
-    text: 'Our mission is to deliver exceptional design and build services by combining creativity, craftsmanship, and collaboration. We strive to exceed client expectations through tailored solutions, on-time project delivery, and a commitment to quality and sustainability in every space we create. To build lasting relationships by being honest, consistent, and committed to delivering on our promises.',
+    tag: 'Our mission',
+    title: 'To create spaces that perform beautifully.',
+    text: "At Ecovation, our mission is to bring together design, functionality and craftsmanship to create spaces that are as purposeful as they are beautiful. We strive to understand every client's vision and transform it into thoughtful, distinctive and practical environments — combining creative design with technical expertise and meticulous execution. From acoustic solutions to complete interiors, we aim to make every space more considered, more functional and more meaningful.",
   },
   {
-    tag: 'Vision',
-    text: 'To be the leading force in innovative fit-out solutions, transforming spaces into inspiring, functional environments that elevate the everyday experience, to bring our clients’ visions to life. To create tailored, high-performance environments that reflect our clients goals, values, and ambitions.',
+    tag: 'Our vision',
+    title: 'To become a benchmark for how great spaces are designed and delivered.',
+    text: 'We envision Ecovation as a design-led interiors company known for original thinking, refined aesthetics, technical excellence and uncompromising attention to detail. Our ambition is to create spaces that are not only admired when they are completed, but continue to inspire how people work, live and experience their surroundings. We aspire to build a brand where every project carries the Ecovation signature — distinctive in design, thoughtful in execution and lasting in impact.',
   },
 ];
 

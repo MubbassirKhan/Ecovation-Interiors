@@ -16,7 +16,7 @@ export default function Marquee() {
           <span className="marquee__item" key={`${word}-${i}`} aria-hidden={i >= words.length}>
             {word}
             <span className="marquee__sep" aria-hidden="true">
-              ✳
+              •
             </span>
           </span>
         ))}

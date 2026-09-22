@@ -64,9 +64,9 @@ export default function Studio() {
             </p>
             <h2 className="studio__heading studio__sequence" aria-label="Design. Detail. Execution.">
               <span>Design</span>
-              <span className="studio__sequence-arrow" aria-hidden="true">→</span>
+              <span className="studio__sequence-arrow" aria-hidden="true">•</span>
               <span>Detail</span>
-              <span className="studio__sequence-arrow" aria-hidden="true">→</span>
+              <span className="studio__sequence-arrow" aria-hidden="true">•</span>
               <span>Execution</span>
             </h2>
           </Reveal>

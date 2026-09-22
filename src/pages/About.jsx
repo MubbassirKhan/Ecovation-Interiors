@@ -10,12 +10,11 @@ import usePageMeta from '../utils/usePageMeta';
 import { onImgError } from '../utils/image';
 
 const VALUES = [
-  { index: '01', title: 'Sustainability First', body: 'Every material choice reflects our commitment to responsible sourcing and circular economy principles.' },
-  { index: '02', title: 'Acoustic Expertise', body: 'Deep knowledge of acoustic performance, NRC ratings and how sound shapes human experience.' },
-  { index: '03', title: 'Design Precision', body: 'Every space is planned with intention - proportions, light, flow and material harmony considered together.' },
-  { index: '04', title: 'Execution Discipline', body: 'On-site coordination, quality checks and accountable delivery on every project we undertake.' },
-  { index: '05', title: 'Customization Depth', body: '120+ panel colors, CNC cutting, printing and embossing for spaces that are genuinely unique.' },
-  { index: '06', title: 'Client Focus', body: 'Long-term relationships built on trust, clear communication and consistent results.' },
+  { index: '01', title: 'Understand', body: 'We understand your space, requirements, aspirations and budget.' },
+  { index: '02', title: 'Conceptualise', body: 'Our designers develop concepts, materials, colours and spatial solutions.' },
+  { index: '03', title: 'Detail', body: 'Ideas are translated into detailed drawings, specifications and execution plans.' },
+  { index: '04', title: 'Execute', body: 'Our project teams coordinate materials, contractors and site execution.' },
+  { index: '05', title: 'Deliver', body: 'The result is a finished space where every element works together.' },
 ];
 
 const PET_BENEFITS = [
@@ -40,18 +39,15 @@ export default function About() {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
   const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
   const contentY = useTransform(scrollYProgress, [0, 0.55], ['0%', '-12%']);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <>
-      {/* ── Hero ── */}
-      <header className="hero about-hero" id="about-top" ref={heroRef}>
-        <div className="hero__media" aria-hidden="true">
+      <div className="about-stage">
+        <div className="about-stage__media" aria-hidden="true">
           <motion.img
-            className="hero__img"
             src={IMAGES.aboutDetail}
             alt=""
             loading="eager"
@@ -59,10 +55,11 @@ export default function About() {
             fetchPriority="high"
             draggable={false}
             onError={onImgError}
-            style={{ y: imageY }}
           />
-          <motion.div className="hero__veil" aria-hidden="true" style={{ opacity: veilOpacity }} />
+          <motion.div className="about-stage__veil" aria-hidden="true" style={{ opacity: veilOpacity }} />
         </div>
+      {/* ── Hero ── */}
+      <header className="hero about-hero" id="about-top" ref={heroRef}>
         <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
           <motion.p className="hero__kicker" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}>
             <span className="hero__kicker-dot" aria-hidden="true" />About Ecovation
@@ -110,7 +107,10 @@ export default function About() {
         <div className="about-signature__inner container">
           <Reveal className="about-signature__heading">
             <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Our approach</p>
-            <h2 id="about-signature-title">Where space becomes <em>signature.</em></h2>
+            <h2 id="about-signature-title">
+              <span>Where space</span>
+              <span>becomes <em>signature.</em></span>
+            </h2>
           </Reveal>
           <Reveal className="about-signature__copy" delay={0.08}>
             <p>Our work spans acoustic environments, turnkey commercial spaces and bespoke residential interiors — each approached with the same philosophy: understand the space, understand the people who experience it, and create something that feels purposeful and original.</p>
@@ -124,18 +124,25 @@ export default function About() {
           </Reveal>
         </div>
       </section>
+      </div>
 
       {/* ── Mission & Vision ── */}
       <MissionVision />
 
-      {/* ── Values ── */}
+      {/* ── Approach ── */}
       <section className="about-values" id="values">
-        <Reveal>
-          <div className="about-section container">
-            <p className="kicker"><span className="kicker__dot" aria-hidden="true" />What drives us</p>
-            <h2 className="about-section__title">Our <em>values</em></h2>
+        <div className="about-values__hero">
+          <div className="about-values__hero-image" aria-hidden="true" />
+          <div className="about-values__hero-inner container">
+            <Reveal className="about-values__hero-copy">
+              <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Our approach</p>
+              <p className="about-values__intro">Every project begins with understanding. We study the space, the people who use it, the requirements and the possibilities — then develop a solution that brings them together.</p>
+            </Reveal>
+            <Reveal className="about-values__hero-title" delay={0.08}>
+              <h2 className="about-section__title">From idea <em>to reality.</em></h2>
+            </Reveal>
           </div>
-        </Reveal>
+        </div>
         <div className="about-values__grid container">
           {VALUES.map((value, index) => (
             <Reveal className="about-values__item" key={value.index} delay={index * 0.05}>
