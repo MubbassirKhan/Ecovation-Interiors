@@ -62,8 +62,8 @@ export default function Footer() {
 
         <div className="footer__direct">
           <a href={CONTACT.phoneHref}>{CONTACT.phoneDisplay}</a>
-          <a href={CONTACT.secondaryPhoneHref}>{CONTACT.secondaryPhoneDisplay}</a>
           <a href={CONTACT.emailHref}>{CONTACT.email}</a>
+          <a href={CONTACT.secondaryEmailHref}>{CONTACT.secondaryEmail}</a>
           <a href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat on WhatsApp</a>
         </div>
 

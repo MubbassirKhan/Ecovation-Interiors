@@ -17,15 +17,6 @@ const VALUES = [
   { index: '05', title: 'Deliver', body: 'The result is a finished space where every element works together.' },
 ];
 
-const PET_BENEFITS = [
-  ['Diverts Plastic Waste', 'Every PET panel keeps post-consumer plastic bottles out of landfills and oceans.'],
-  ['Second Life Materials', 'Giving discarded PET a premium second life as high-performance acoustic solutions.'],
-  ['Lightweight', 'Lighter than traditional materials - easier to install and lower transport footprint.'],
-  ['Durable', 'Long-lasting acoustic performance without degradation over time.'],
-  ['Moisture Resistant', 'Non-hygroscopic and mold-resistant - safe for diverse interior environments.'],
-  ['Fire Rated', 'EN13501-1: B-s1,d0 certified - meeting international safety standards.'],
-];
-
 export default function About() {
   usePageMeta(
     'About — Ecovation, Sustainable Workspaces & Acoustic Solutions',
@@ -151,34 +142,6 @@ export default function About() {
               <p>{value.body}</p>
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* ── Sustainability ── */}
-      <section className="about-pet" id="sustainability">
-        <div className="about-section container">
-          <Reveal>
-            <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Sustainability</p>
-            <h2 className="about-section__title">Why recycled <em>PET?</em></h2>
-          </Reveal>
-          <div className="about-pet__intro">
-            <Reveal>
-              <p>Polyethylene terephthalate - the plastic in PET bottles - is one of the world's most recyclable materials. Ecovation transforms post-consumer PET bottles into premium acoustic panels, combining performance with environmental responsibility.</p>
-            </Reveal>
-            <Reveal delay={0.08} className="about-pet__stat">
-              <strong>75%</strong>
-              <span>Minimum recycled content</span>
-              <p>Each panel contains at least 75% post-consumer recycled PET - giving plastic waste a premium second life as acoustic solutions.</p>
-            </Reveal>
-          </div>
-          <div className="about-pet__benefits">
-            {PET_BENEFITS.map(([title, body], index) => (
-              <Reveal key={title} delay={index * 0.04} className="about-pet__benefit">
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -313,11 +276,11 @@ export default function About() {
             <div className="about-contact__item">
               <span>Phone numbers</span>
               <a href={CONTACT.phoneHref}>{CONTACT.phoneDisplay}<small>Primary</small></a>
-              <a href={CONTACT.secondaryPhoneHref}>{CONTACT.secondaryPhoneDisplay}<small>Also reachable</small></a>
             </div>
             <div className="about-contact__item">
               <span>Email address</span>
               <a href={CONTACT.emailHref}>{CONTACT.email}</a>
+              <a href={CONTACT.secondaryEmailHref}>{CONTACT.secondaryEmail}<small>Also reachable</small></a>
               <p>We reply within 24 hours on business days.</p>
             </div>
             <div className="about-contact__item">

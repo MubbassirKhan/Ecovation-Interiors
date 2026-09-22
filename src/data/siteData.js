@@ -18,14 +18,14 @@ export const SITE = {
 export const CONTACT = {
   phoneDisplay: '+91 95387 78892',
   phoneHref: 'tel:+919538778892',
-  secondaryPhoneDisplay: '+91 95138 77866',
-  secondaryPhoneHref: 'tel:+919513877866',
   whatsappHref: 'https://wa.me/919538778892',
   email: 'info@ecovation.co.in',
   emailHref: 'mailto:info@ecovation.co.in',
-  addressLine1: 'Building No. #651, Agumbe, Arpitha Narayan Studio',
+  secondaryEmail: 'nida@ecovation.co.in',
+  secondaryEmailHref: 'mailto:nida@ecovation.co.in',
+  addressLine1: '2nd Floor, Building No. #651, Agumbe, Arpitha Narayan Studio',
   addressLine2: '650, 10th A Cross Road, West of Chord Road, 2nd Stage, 4th B Main, Stage 2, Mahalakshmi Layout, Bengaluru - 560082',
-  address: 'Building No. #651, Agumbe, Arpitha Narayan Studio, 650, 10th A Cross Road, West of Chord Road, 2nd Stage, 4th B Main, Stage 2, Mahalakshmi Layout, Bengaluru - 560082',
+  address: '2nd Floor, Building No. #651, Agumbe, Arpitha Narayan Studio, 650, 10th A Cross Road, West of Chord Road, 2nd Stage, 4th B Main, Stage 2, Mahalakshmi Layout, Bengaluru - 560082',
   region: 'Karnataka, India',
 };
 

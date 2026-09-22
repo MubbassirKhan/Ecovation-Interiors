@@ -163,8 +163,8 @@ export default function Contact() {
               </li>
               <li className="contact-detail">
                 <span className="contact-detail__label">Also reachable</span>
-                <a className="contact-detail__value" href={CONTACT.secondaryPhoneHref}>
-                  {CONTACT.secondaryPhoneDisplay}
+                <a className="contact-detail__value" href={CONTACT.secondaryEmailHref}>
+                  {CONTACT.secondaryEmail}
                 </a>
               </li>
               <li className="contact-detail">
@@ -176,12 +176,12 @@ export default function Contact() {
             </ul>
             <div className="contact-page__map">
               <iframe
-                title="Ecovation office location in Mahalakshmi Layout, Bengaluru"
-                src="https://www.google.com/maps?q=Mahalakshmi+Layout+Bengaluru+Karnataka+560082&output=embed"
+                title="Ecovation office location in Bengaluru"
+                src="https://www.google.com/maps?q=12.9991865,77.546875&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
-              <a href="https://www.google.com/maps/search/?api=1&query=Mahalakshmi+Layout+Bengaluru+Karnataka+560082" target="_blank" rel="noreferrer">
+              <a href="https://www.google.com/maps/place/12%C2%B059'57.1%22N+77%C2%B032'48.8%22E/@12.9991865,77.5443001,17z/data=!3m1!4b1!4m4!3m3!8m2!3d12.9991865!4d77.546875?hl=en&entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">
                 Open in Google Maps <span aria-hidden="true">↗</span>
               </a>
             </div>
