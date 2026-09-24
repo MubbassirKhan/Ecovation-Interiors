@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { IMAGES } from "../data/projects";
 import { onImgError } from "../utils/image";
@@ -15,6 +10,8 @@ import { onImgError } from "../utils/image";
  */
 export default function Hero() {
   const heroRef = useRef(null);
+  const [typedTitle, setTypedTitle] = useState("");
+  const [typedService, setTypedService] = useState("");
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -25,14 +22,46 @@ export default function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 0.55], ["0%", "-12%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const rotatingWords = ["Workspaces", "PET Panels", "Residential"];
-  const [activeWordIndex, setActiveWordIndex] = useState(0);
   useEffect(() => {
-    const id = window.setInterval(
-      () => setActiveWordIndex((c) => (c + 1) % rotatingWords.length),
-      2400,
-    );
-    return () => window.clearInterval(id);
+    const services = ["Workspaces", "Residential", "Acoustic Panels"];
+    let timer;
+    let cancelled = false;
+
+    const typeText = (text, update, onComplete, index = 0) => {
+      if (cancelled) return;
+      update(text.slice(0, index + 1));
+      if (index < text.length - 1) {
+        timer = window.setTimeout(() => typeText(text, update, onComplete, index + 1), 68);
+      } else {
+        timer = window.setTimeout(onComplete, 260);
+      }
+    };
+
+    const eraseText = (text, update, onComplete, index = text.length) => {
+      if (cancelled) return;
+      update(text.slice(0, index - 1));
+      if (index > 1) {
+        timer = window.setTimeout(() => eraseText(text, update, onComplete, index - 1), 42);
+      } else {
+        timer = window.setTimeout(onComplete, 180);
+      }
+    };
+
+    const typeService = (serviceIndex) => {
+      const service = services[serviceIndex];
+      typeText(service, setTypedService, () => {
+        timer = window.setTimeout(() => {
+          eraseText(service, setTypedService, () => typeService((serviceIndex + 1) % services.length));
+        }, 2200);
+      });
+    };
+
+    typeText("Ecovation Interiors", setTypedTitle, () => typeService(0));
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -72,57 +101,23 @@ export default function Hero() {
           <span className="hero__kicker-dot" aria-hidden="true" />
         </motion.p>
 
-        {/* Headline — left-to-right wipe reveal */}
-        <h1 className="hero__title">
+        {/* Headline */}
+        <h1 className="hero__title" aria-label="Ecovation Interiors">
           <span className="hero__line hero__line--1">
-            <motion.span
-              className="hero__line-mask"
-              initial={{ clipPath: "inset(0 100% 0 0)" }}
-              animate={{ clipPath: "inset(0 0% 0 0)" }}
-              transition={{
-                duration: 1.05,
-                delay: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              Ecovation Interiors
-            </motion.span>
-            <motion.span
-              className="hero__line-shimmer"
-              initial={{ left: "-30%", opacity: 0.85 }}
-              animate={{ left: "115%", opacity: 0 }}
-              transition={{
-                duration: 1.05,
-                delay: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              aria-hidden="true"
-            />
+            <span className="hero__line-mask hero__typing" aria-hidden="true">{typedTitle}</span>
           </span>
 
-          <span className="hero__line hero__line--2" aria-live="polite">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={rotatingWords[activeWordIndex]}
-                className="hero__line-inner"
-                initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
-                animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}
-                exit={{ clipPath: "inset(0 0% 0 100%)", opacity: 0 }}
-                transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-                style={{ display: "inline-block", paddingBottom: "0.12em" }}
-              >
-                {rotatingWords[activeWordIndex]}
-              </motion.span>
-            </AnimatePresence>
+          <span className="hero__line hero__line--2">
+            <span className="hero__line-inner hero__typing" aria-hidden="true">{typedService}</span>
           </span>
         </h1>
 
         {/* Sub */}
         <motion.p
           className="hero__sub"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.85 }}
+          initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
+          animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.95 }}
         >
           Where Design Meets Function. We create thoughtfully designed spaces
           where aesthetics, functionality and craftsmanship come together.

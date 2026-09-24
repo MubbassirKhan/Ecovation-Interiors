@@ -1187,12 +1187,16 @@ button {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(3.5rem, 6.7vw, 6.6rem);
-  line-height: 0.95;
+  line-height: 1.04;
+  padding-bottom: 0.12em;
   letter-spacing: -0.03em;
   color: var(--ink);
   text-wrap: balance;
-  clip-path: none !important;
-  opacity: 1 !important;
+  clip-path: inset(0 0 0 0);
+}
+
+.hero__typing {
+  min-height: 0.95em;
 }
 
 /* Shimmer — the gold sweep that follows the reveal */
@@ -1233,7 +1237,7 @@ button {
 .hero__line--2 {
   position: relative;
   display: block;
-  min-height: 1.25em;
+  min-height: 1.16em;
   margin-bottom: 0.3em;
   overflow: visible;
 }
@@ -1247,13 +1251,13 @@ button {
   color: #e6d3b3;
   -webkit-text-fill-color: currentColor;
   -webkit-background-clip: border-box;
-  clip-path: none !important;
-  opacity: 1 !important;
+  clip-path: inset(0 0 0 0);
   text-shadow: 0 0 18px rgba(215, 179, 110, 0.18), 0 10px 24px rgba(22, 17, 12, 0.4);
   -webkit-text-stroke: 0.5px rgba(244, 230, 203, 0.28);
   filter: drop-shadow(0 10px 22px rgba(14, 12, 10, 0.26));
   letter-spacing: -0.05em;
-  line-height: 0.95;
+  line-height: 1.04;
+  padding-bottom: 0.12em;
   font-size: clamp(2.8rem, 5.5vw, 5.4rem);
   max-width: 100%;
   white-space: normal;
@@ -3389,7 +3393,7 @@ button {
     width: 100%;
     max-width: none;
     font-size: clamp(2.1rem, 11vw, 2.9rem);
-    line-height: 0.94;
+    line-height: 1;
   }
 
   .hero__line--1,
@@ -3400,20 +3404,24 @@ button {
   .hero__line-mask {
     max-width: 100%;
     font-size: clamp(2.35rem, 13vw, 3.45rem);
-    line-height: 0.94;
+    line-height: 1.02;
     letter-spacing: -0.04em;
   }
 
   .hero__line-inner {
     max-width: 100%;
     font-size: clamp(2.15rem, 12vw, 3.15rem);
-    line-height: 0.98;
+    line-height: 1.04;
     letter-spacing: -0.04em;
   }
 
-  .hero__line--2 {
+  .hero__line--1 {
     min-height: 1.05em;
-    margin-top: 0.12rem;
+  }
+
+  .hero__line--2 {
+    min-height: 2.1em;
+    margin-top: 0.35rem;
     margin-bottom: 0;
   }
 
@@ -4279,8 +4287,14 @@ button {
 }
 
 .about-hero .hero__line--2 {
-  min-height: 1.08em;
+  min-height: 1.16em;
   margin-top: 0.08em;
+}
+
+.about-hero .hero__line-mask,
+.about-hero .hero__line-inner {
+  line-height: 1.04;
+  padding-bottom: 0.12em;
 }
 
 .about-hero__principles {
@@ -7811,12 +7825,12 @@ a.contact-detail__value:hover {
 
   .about-hero .hero__line-mask {
     font-size: clamp(2.45rem, 11vw, 3.6rem);
-    line-height: 0.96;
+    line-height: 1.02;
   }
 
   .about-hero .hero__line-inner {
     font-size: clamp(2.2rem, 10vw, 3.25rem);
-    line-height: 1;
+    line-height: 1.05;
   }
 
   .about-hero .hero__sub {
