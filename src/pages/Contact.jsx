@@ -114,7 +114,7 @@ export default function Contact() {
         </div>
         <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
           <motion.p className="hero__kicker" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.15 }}>
-            <span className="hero__kicker-dot" aria-hidden="true" />Contact&nbsp;&nbsp;•&nbsp;&nbsp;Start a project&nbsp;&nbsp;•&nbsp;&nbsp;Ecovation Interiors
+            <span className="hero__kicker-dot" aria-hidden="true" />Contact
           </motion.p>
           <h1 className="hero__title">
             <span className="hero__line hero__line--1"><motion.span className="hero__line-mask" initial={{ clipPath: 'inset(0 100% 0 0)' }} animate={{ clipPath: 'inset(0 0% 0 0)' }} transition={{ duration: 1.05, delay: 0.3 }}>Ready to</motion.span></span>

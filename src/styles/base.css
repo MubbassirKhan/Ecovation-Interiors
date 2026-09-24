@@ -1150,7 +1150,7 @@ button {
 
 /* Kicker — top location / year badge */
 .hero__kicker {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 0.55rem;
   margin-bottom: 1.4rem;
@@ -6618,18 +6618,6 @@ button {
   isolation: isolate;
   height: 100svh;
   min-height: 640px;
-}
-
-.contact-page-hero::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  width: min(34vw, 34rem);
-  height: 48%;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 0%, rgba(13, 12, 11, 0.38) 34%, rgba(13, 12, 11, 0.86) 100%);
 }
 
 .contact-hero__aside {
