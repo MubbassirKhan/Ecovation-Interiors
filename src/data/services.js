@@ -21,7 +21,7 @@ export const HOME_SERVICES = [
     title: 'Residential',
     blurb:
       'Thoughtfully designed residential interiors combining aesthetics, comfort, sustainability and acoustic performance.',
-    image: IMAGES.collaboration,
+    image: '/Ecovation Images/residential/service.jpg',
     to: '/residential',
   },
   {
