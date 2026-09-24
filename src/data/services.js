@@ -30,7 +30,7 @@ export const HOME_SERVICES = [
     title: 'PET Acoustic Panels',
     blurb:
       'Advanced sound solutions made from recycled PET for superior acoustic performance and sustainable interior design.',
-    image: IMAGES.acousticPanels,
+    image: '/Ecovation Images/acoustic-panels/acoustic_service.png',
     to: '/acoustic-panels',
   },
 ];
