@@ -6,7 +6,7 @@ import Services from '../components/Services';
 import Projects from '../components/Projects';
 import CTASection from '../components/CTASection';
 import Reveal from '../components/Reveal';
-import ClientMarquee from '../components/ClientMarquee';
+import ClientsSection from '../components/ClientsSection';
 import {
   HIGHLIGHTS,
   WHY_CHOOSE,
@@ -37,7 +37,7 @@ export default function Home() {
       <Projects projects={PROJECTS} />
       <WhyChoose />
       <HowWeWork />
-      <Clients />
+      <ClientsSection />
       <CTASection
         kicker="Ready to start?"
         heading="Ready to start?"
@@ -45,7 +45,7 @@ export default function Home() {
         email={{ href: CONTACT.emailHref, label: CONTACT.email }}
         phone={{ href: CONTACT.phoneHref, label: CONTACT.phoneDisplay }}
         note={CONTACT.address}
-        mediaSrc={IMAGES.contact}
+        mediaSrc={encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/general/readytostart.png`)}
         ctaLabel="Contact us"
         to="/contact"
       />
@@ -137,47 +137,3 @@ function HowWeWork() {
   );
 }
 
-/* ------------------------------------------------------------
-   Our clients — typographic wordmarks (no fabricated logos).
-   ------------------------------------------------------------ */
-function Clients() {
-  const stats = [
-    { icon: 'building', value: '200+', label: 'Projects Delivered' },
-    { icon: 'people', value: '50+', label: 'Happy Clients' },
-    { icon: 'handshake', value: '15+', label: 'Years of Experience' },
-    { icon: 'globe', value: 'Across', label: 'India & International' },
-  ];
-
-  return (
-    <section className="clients">
-      <div className="container">
-        <Reveal>
-          <p className="kicker">
-            <span className="kicker__dot" aria-hidden="true" />
-            Our clients
-          </p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h2 className="clients__title">
-            <span>Trusted by Forward</span>
-            <span>Thinking <em>Organizations</em></span>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.12}>
-          <p className="clients__lede">We collaborate with leading businesses, institutions and homeowners to create spaces that inspire, perform and last.</p>
-        </Reveal>
-        <Reveal delay={0.14}>
-          <ClientMarquee className="clients__marquee" />
-        </Reveal>
-        <div className="clients__stats" aria-label="Client and project highlights">
-          {stats.map(({ icon, value, label }) => (
-            <div className="clients__stat" key={label}>
-              <span className={`clients__stat-icon clients__stat-icon--${icon}`} aria-hidden="true" />
-              <div><strong>{value}</strong><span>{label}</span></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}

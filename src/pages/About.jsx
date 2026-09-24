@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import Reveal from '../components/Reveal';
 import CTASection from '../components/CTASection';
-import ClientMarquee from '../components/ClientMarquee';
+import ClientsSection from '../components/ClientsSection';
 import MissionVision from '../components/MissionVision';
 import { IMAGES } from '../data/projects';
 import { CONTACT, TEAM } from '../data/siteData';
@@ -249,16 +249,7 @@ export default function About() {
 
       </section>
 
-      {/* ── Clients ── */}
-      <section className="about-clients" id="clients">
-        <div className="about-section container">
-          <Reveal>
-            <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Trusted by</p>
-            <h2 className="about-section__title">Our <em>clients</em></h2>
-          </Reveal>
-          <ClientMarquee className="about-clients__marquee" />
-        </div>
-      </section>
+      <ClientsSection />
 
       {/* ── Contact ── */}
       <section className="about-contact container" id="contact">

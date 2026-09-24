@@ -18,6 +18,7 @@ const PROJECT_TYPES = [
 ];
 
 const INITIAL = { name: '', email: '', phone: '', company: '', projectType: '', message: '' };
+const READY_TO_START_IMAGE = encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/general/readytostart.png`);
 
 function validate(values) {
   const errors = {};
@@ -101,7 +102,7 @@ export default function Contact() {
         <div className="hero__media" aria-hidden="true">
           <motion.img
             className="hero__img"
-            src={IMAGES.contactHeroBackground}
+            src={READY_TO_START_IMAGE}
             alt="Warm, refined interior ready for a considered design conversation"
             fetchPriority="high"
             loading="eager"
