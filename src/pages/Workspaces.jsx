@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Reveal from '../components/Reveal';
@@ -24,15 +24,17 @@ const SOLUTIONS = [
 ];
 
 const STORY_IMAGES = [
-  [IMAGES.heroLocal, 'Modern office design'],
-  [IMAGES.openOffice, 'Creative workspace'],
-  [IMAGES.meetingRoom, 'Open office'],
-  [IMAGES.collaboration, 'Meeting room'],
-  [IMAGES.reception, 'Collaborative space'],
+  [IMAGES.projectOpenOffice, 'Modern glass-partition workspace'],
+  [IMAGES.projectMeetingRoom, 'Executive meeting room'],
+  [IMAGES.projectCollaboration, 'Collaborative workspace'],
+  [IMAGES.projectReception, 'Elegant lounge area'],
+  [IMAGES.projectBreakoutSpace, 'Breakout workspace'],
+  [IMAGES.projectWorkspaceInterior, 'Warm open-plan workspace'],
 ];
 
 export default function Workspaces() {
   const [selectedStory, setSelectedStory] = useState(0);
+  const [isStoryViewerOpen, setIsStoryViewerOpen] = useState(false);
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -42,6 +44,22 @@ export default function Workspaces() {
   const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
   const contentY = useTransform(scrollYProgress, [0, 0.55], ['0%', '-12%']);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const showNextStory = () => setSelectedStory((current) => (current + 1) % STORY_IMAGES.length);
+  const showPreviousStory = () => setSelectedStory((current) => (current - 1 + STORY_IMAGES.length) % STORY_IMAGES.length);
+
+  useEffect(() => {
+    if (!isStoryViewerOpen) return undefined;
+
+    const handleViewerKeyDown = (event) => {
+      if (event.key === 'ArrowRight') showNextStory();
+      if (event.key === 'ArrowLeft') showPreviousStory();
+      if (event.key === 'Escape') setIsStoryViewerOpen(false);
+    };
+
+    window.addEventListener('keydown', handleViewerKeyDown);
+    return () => window.removeEventListener('keydown', handleViewerKeyDown);
+  }, [isStoryViewerOpen]);
 
   usePageMeta(
     'Workspaces — Ecovation, Sustainable Workspace Design in Bengaluru',
@@ -121,37 +139,33 @@ export default function Workspaces() {
       </section>
 
       <section className="workspace-story container">
-        <Reveal>
-          <div className="workspace-story__lead">
-            <img
-              key={STORY_IMAGES[selectedStory][0]}
-              src={STORY_IMAGES[selectedStory][0]}
-              alt={STORY_IMAGES[selectedStory][1]}
-              loading="lazy"
-              decoding="async"
-            />
-            <span>{STORY_IMAGES[selectedStory][1]}</span>
-          </div>
-        </Reveal>
-        <div className="workspace-story__support" aria-label="Workspace image gallery">
-          {STORY_IMAGES.map(([src, alt], index) => index !== selectedStory && (
+        <div className="workspace-story__grid" aria-label="Workspace image gallery">
+          {STORY_IMAGES.map(([src, alt], index) => (
             <Reveal key={src} delay={index * 0.05}>
               <button
-                className="workspace-story__thumb"
+                className={`workspace-story__tile${index === selectedStory ? ' is-active' : ''}`}
                 type="button"
-                onClick={() => setSelectedStory(index)}
-                aria-label={`Show ${alt}`}
+                onClick={() => { setSelectedStory(index); setIsStoryViewerOpen(true); }}
+                aria-label={`Enlarge ${alt}`}
               >
                 <figure>
                   <img src={src} alt={alt} loading="lazy" decoding="async" />
-                  <figcaption>{alt}</figcaption>
-                  <span className="workspace-story__thumb-action" aria-hidden="true">View ↗</span>
+                  <figcaption><span>{String(index + 1).padStart(2, '0')}</span>{alt}</figcaption>
                 </figure>
               </button>
             </Reveal>
           ))}
         </div>
       </section>
+
+      {isStoryViewerOpen && (
+        <div className="workspace-story__viewer" role="dialog" aria-modal="true" aria-label={STORY_IMAGES[selectedStory][1]} onClick={() => setIsStoryViewerOpen(false)}>
+          <button className="workspace-story__viewer-close" type="button" onClick={() => setIsStoryViewerOpen(false)} aria-label="Close enlarged image">Close</button>
+          <button className="workspace-story__viewer-nav workspace-story__viewer-nav--previous" type="button" onClick={(event) => { event.stopPropagation(); showPreviousStory(); }} aria-label="Previous image">&#8592;</button>
+          <img src={STORY_IMAGES[selectedStory][0]} alt={STORY_IMAGES[selectedStory][1]} onClick={(event) => event.stopPropagation()} />
+          <button className="workspace-story__viewer-nav workspace-story__viewer-nav--next" type="button" onClick={(event) => { event.stopPropagation(); showNextStory(); }} aria-label="Next image">&#8594;</button>
+        </div>
+      )}
 
       <section className="workspace-solutions">
         <div className="container">

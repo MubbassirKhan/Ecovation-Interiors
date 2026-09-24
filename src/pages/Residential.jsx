@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import Reveal from '../components/Reveal';
+import { ImageViewer, useImageViewer } from '../components/ImageViewer';
 import { CONTACT } from '../data/siteData';
 import { IMAGES } from '../data/projects';
 import { onImgError } from '../utils/image';
@@ -29,6 +30,7 @@ const RESIDENTIAL_IMAGES = [
   [IMAGES.residentialOffice, 'A focused home office with considered acoustic details'],
   [IMAGES.residentialDetails, 'Residential details made for everyday living'],
   [IMAGES.residentialThird, 'A considered residential interior'],
+  [IMAGES.residentialService, 'A refined residential setting'],
 ];
 
 const FEATURES = [
@@ -126,11 +128,20 @@ function IntroSection() {
 }
 
 function CompositionSection() {
+  const viewer = useImageViewer(RESIDENTIAL_IMAGES);
+
   return <section className="residential-composition container" aria-label="Residential interiors">
-    <Reveal className="residential-composition__lead"><img src={RESIDENTIAL_IMAGES[0][0]} alt={RESIDENTIAL_IMAGES[0][1]} loading="lazy" onError={onImgError} /></Reveal>
-    <div className="residential-composition__side">
-      {RESIDENTIAL_IMAGES.slice(1, 3).map(([src, alt], index) => <Reveal key={src} delay={index * 0.06}><img src={src} alt={alt} loading="lazy" onError={onImgError} /></Reveal>)}
+    <div className="residential-composition__grid">
+      {RESIDENTIAL_IMAGES.map(([src, alt], index) => <Reveal key={src} delay={index * 0.05}>
+        <button className="residential-composition__tile" type="button" onClick={() => viewer.open(index)} aria-label={`Enlarge ${alt}`}>
+          <figure>
+            <img src={src} alt={alt} loading="lazy" onError={onImgError} />
+            <figcaption><span>{String(index + 1).padStart(2, '0')}</span>{alt}</figcaption>
+          </figure>
+        </button>
+      </Reveal>)}
     </div>
+    <ImageViewer images={RESIDENTIAL_IMAGES} {...viewer} />
   </section>;
 }
 
@@ -170,11 +181,18 @@ function ApproachSection() {
 }
 
 function GallerySection() {
+  const viewer = useImageViewer(RESIDENTIAL_IMAGES);
+
   return <section className="residential-gallery container">
     <Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />Residential details</p><h2>Material, light and <em>quiet moments.</em></h2></Reveal>
     <div className="residential-gallery__grid" aria-label="Residential image gallery">
-      {RESIDENTIAL_IMAGES.map(([src, alt], index) => <Reveal className={`residential-gallery__item residential-gallery__item--${index + 1}`} key={src} delay={index * 0.04}><img src={src} alt={alt} loading="lazy" onError={onImgError} /></Reveal>)}
+      {RESIDENTIAL_IMAGES.map(([src, alt], index) => <Reveal className={`residential-gallery__item residential-gallery__item--${index + 1}`} key={src} delay={index * 0.04}>
+        <button type="button" onClick={() => viewer.open(index)} aria-label={`Enlarge ${alt}`}>
+          <img src={src} alt={alt} loading="lazy" onError={onImgError} />
+        </button>
+      </Reveal>)}
     </div>
+    <ImageViewer images={RESIDENTIAL_IMAGES} {...viewer} />
   </section>;
 }
 

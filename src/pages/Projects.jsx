@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
+import { ImageViewer, useImageViewer } from '../components/ImageViewer';
 import CTASection from '../components/CTASection';
 import { local, IMAGES } from '../data/projects';
 import { CONTACT } from '../data/siteData';
@@ -157,13 +158,20 @@ const OVERVIEW = [
 /* Masonry Gallery                                                      */
 /* ------------------------------------------------------------------ */
 function MasonryGallery({ images, title }) {
+  const viewerImages = images.map((src, index) => [src, `${title} — view ${index + 1}`]);
+  const viewer = useImageViewer(viewerImages);
+
   return (
     <div className="proj-masonry" aria-label={`${title} gallery`}>
-      {images.slice(0, 5).map((src, i) => (
-        <div key={i} className={`proj-masonry__cell proj-masonry__cell--${i + 1}`}>
-          <img src={src} alt={`${title} — view ${i + 1}`} loading="lazy" decoding="async" />
-        </div>
+      {viewerImages.map(([src, alt], i) => (
+        <button key={src} className="proj-masonry__cell" type="button" onClick={() => viewer.open(i)} aria-label={`Enlarge ${alt}`}>
+          <figure>
+            <img src={src} alt={alt} loading="lazy" decoding="async" />
+            <figcaption><span>{String(i + 1).padStart(2, '0')}</span>{title}</figcaption>
+          </figure>
+        </button>
       ))}
+      <ImageViewer images={viewerImages} {...viewer} />
     </div>
   );
 }
@@ -212,7 +220,7 @@ function ProjectEntry({ project, index }) {
 
       {/* Gallery pane */}
       <Reveal delay={0.14} className="proj-entry__gallery-wrap">
-        <MasonryGallery images={project.gallery} title={project.title} />
+        <MasonryGallery images={[project.heroImage, ...project.gallery]} title={project.title} />
       </Reveal>
     </motion.article>
   );

@@ -1,4 +1,5 @@
 import Reveal from '../components/Reveal';
+import { ImageViewer, useImageViewer } from '../components/ImageViewer';
 import ParallaxImage from '../components/ParallaxImage';
 import CTASection from '../components/CTASection';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -125,6 +126,9 @@ function WhatIsPET() {
 }
 
 function Products() {
+  const productImages = ACOUSTIC_SOLUTIONS.map(({ image, title }) => [image, title]);
+  const viewer = useImageViewer(productImages);
+
   return (
     <section className="ac-products" id="products">
       <div className="container ac-section-heading"><Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />What we make</p><h2>Acoustic solutions for <em>better spaces.</em></h2></Reveal></div>
@@ -133,13 +137,15 @@ function Products() {
           <div className="container">
             <div className={`ac-product__row${i % 2 === 1 ? ' ac-product__row--flip' : ''}`}>
               <Reveal className="ac-product__media">
-                <ParallaxImage
-                  src={p.image}
-                  alt={p.title}
-                  ratio="4 / 3"
-                  className="ac-product__figure"
-                  yRange={['-12%', '12%']}
-                />
+                <button className="ac-product__image-button" type="button" onClick={() => viewer.open(i)} aria-label={`Enlarge ${p.title}`}>
+                  <ParallaxImage
+                    src={p.image}
+                    alt={p.title}
+                    ratio="4 / 3"
+                    className="ac-product__figure"
+                    yRange={['-12%', '12%']}
+                  />
+                </button>
               </Reveal>
 
               <div className="ac-product__content">
@@ -162,6 +168,7 @@ function Products() {
           </div>
         </article>
       ))}
+      <ImageViewer images={productImages} {...viewer} />
     </section>
   );
 }
