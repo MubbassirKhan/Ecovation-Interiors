@@ -100,8 +100,16 @@ export default function Workspaces() {
 
       <section className="workspace-about container">
         <div className="workspace-about__intro">
-          <Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />About this service</p><h2>Transforming <em>work environments</em></h2></Reveal>
-          <Reveal delay={0.1}><p>We design modern workspaces with smart space planning, ergonomic layouts, and acoustic comfort—creating offices that support focus, collaboration, and well-being.</p></Reveal>
+          <Reveal>
+            <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Our perspective</p>
+            <h2><span>Where workspace</span><span>becomes <em>signature.</em></span></h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="workspace-about__copy">
+              <p>A great workplace does more than accommodate people. It shapes how they think, collaborate, perform and experience the brand.</p>
+              <p>At Ecovation, we create sophisticated workspaces where design and functionality come together seamlessly. We approach every project as a complete experience—carefully considered from the first spatial concept to the final detail.</p>
+            </div>
+          </Reveal>
         </div>
         <div className="workspace-capabilities">
           {CAPABILITIES.map(([title, body], index) => (
@@ -154,10 +162,42 @@ export default function Workspaces() {
         </div>
       </section>
 
+      <section className="workspace-signature container">
+        <Reveal className="workspace-signature__heading">
+          <p className="kicker"><span className="kicker__dot" aria-hidden="true" />The Ecovation signature</p>
+          <h2>A distinctive approach to <em>workspace design.</em></h2>
+        </Reveal>
+        <Reveal className="workspace-signature__copy" delay={0.1}>
+          <p>We believe exceptional workspaces are defined by more than aesthetics. They are shaped by how they feel, function and perform.</p>
+          <p>The Ecovation Signature brings together thoughtful spatial planning, refined materiality, architectural acoustics and precise execution to create workplaces that are distinctive, purposeful and enduring.</p>
+          <p className="workspace-signature__line">Every space has a story. We give it a signature.</p>
+        </Reveal>
+      </section>
+
       <section className="workspace-break">
         <img src={IMAGES.collaboration} alt="Collaborative workspace interior" loading="lazy" decoding="async" />
         <div className="workspace-break__veil" />
         <Reveal className="workspace-break__content"><p className="kicker"><span className="kicker__dot" aria-hidden="true" />Designed for better work</p><h2>Spaces that work beautifully—and sound right.</h2></Reveal>
+      </section>
+
+      <section className="workspace-purpose">
+        <div className="workspace-purpose__inner container">
+          <Reveal className="workspace-purpose__heading">
+            <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Our point of view</p>
+            <h2>Designed around people.<br /><em>Built around purpose.</em></h2>
+          </Reveal>
+          <Reveal className="workspace-purpose__copy" delay={0.1}>
+            <p>We believe premium workplace design is not about adding more. It is about making every element intentional.</p>
+            <ul>
+              <li>The right material.</li>
+              <li>The right proportion.</li>
+              <li>The right light.</li>
+              <li>The right acoustic environment.</li>
+              <li>The right experience.</li>
+            </ul>
+            <p>Every decision is made to create a workplace that feels distinctive, effortless and enduring.</p>
+          </Reveal>
+        </div>
       </section>
 
       <section className="workspace-process container">
