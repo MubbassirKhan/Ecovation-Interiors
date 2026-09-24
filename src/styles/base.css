@@ -1138,7 +1138,7 @@ button {
   text-align: left;
   padding: clamp(7rem, 14vh, 10rem) 0 clamp(6rem, 12vh, 10rem);
   will-change: transform, opacity;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero__over {
@@ -1180,12 +1180,15 @@ button {
 /* Clip-path mask — reveals text left to right */
 .hero__line-mask {
   display: inline-block;
+  width: 100%;
+  max-width: 100%;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(3.5rem, 6.7vw, 6.6rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--ink);
+  text-wrap: balance;
 }
 
 /* Shimmer — the gold sweep that follows the reveal */
@@ -1208,6 +1211,7 @@ button {
 }
 
 .hero__title {
+  width: 100%;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(3.5rem, 6.7vw, 6.6rem);
@@ -1231,7 +1235,8 @@ button {
 }
 
 .hero__line-inner {
-  display: inline-block;
+  display: block;
+  width: 100%;
   background: linear-gradient(180deg, #f8f3eb 0%, #efd7a3 36%, #efe4d4 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -1242,7 +1247,9 @@ button {
   letter-spacing: -0.05em;
   line-height: 0.95;
   font-size: clamp(2.8rem, 5.5vw, 5.4rem);
-  white-space: nowrap;
+  max-width: 100%;
+  white-space: normal;
+  text-wrap: balance;
   vertical-align: top;
 }
 
@@ -1271,9 +1278,11 @@ button {
   letter-spacing: 0.02em;
   color: var(--ink-2);
   max-width: 43ch;
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
+  text-align: left;
+  text-justify: auto;
+  hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .hero__ctas {
@@ -6575,15 +6584,31 @@ button {
   min-height: 640px;
 }
 
+.contact-page-hero::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: min(34vw, 34rem);
+  height: 48%;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(13, 12, 11, 0.38) 34%, rgba(13, 12, 11, 0.86) 100%);
+}
+
 .contact-hero__aside {
   position: absolute;
   right: var(--container-right, 4vw);
   bottom: clamp(3.5rem, 10vh, 7rem);
   width: min(22rem, 30vw);
-  padding: 1.25rem 0 1.4rem 1.5rem;
+  z-index: 3;
+  padding: 1.25rem 1.5rem 1.4rem;
   border-block: 1px solid rgba(244, 239, 230, 0.24);
   border-left: 1px solid rgba(244, 239, 230, 0.24);
   color: var(--ink-2);
+  background: rgba(13, 12, 11, 0.32);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .contact-hero__aside-label {

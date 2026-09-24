@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import Reveal from '../components/Reveal';
 import { CONTACT } from '../data/siteData';
 import { IMAGES } from '../data/projects';
@@ -59,22 +61,56 @@ export default function Residential() {
 }
 
 function HeroSection() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
+  const contentY = useTransform(scrollYProgress, [0, 0.55], ['0%', '-12%']);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="workspace-hero residential-hero">
-      <div className="workspace-hero__media" aria-hidden="true">
-        <img src={IMAGES.residentialLiving} alt="" loading="eager" decoding="async" onError={onImgError} />
-        <div className="workspace-hero__veil" />
+    <header className="hero residential-page-hero" id="residential-top" ref={heroRef}>
+      <div className="hero__media" aria-hidden="true">
+        <motion.img
+          className="hero__img"
+          src={IMAGES.residentialHero}
+          alt="Warm, considered residential interior with natural light"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          draggable={false}
+          onError={onImgError}
+          style={{ y: imageY }}
+        />
+        <motion.div className="hero__veil" style={{ opacity: veilOpacity }} />
       </div>
-      <div className="workspace-hero__inner container">
-        <Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />Residential interiors</p></Reveal>
-        <Reveal delay={0.08}><h1><span>Residential interiors</span><em>designed around you.</em></h1></Reveal>
-        <Reveal delay={0.16}><p>From living spaces to bedrooms and home offices, Ecovation creates interiors around how you and your family use the space.</p></Reveal>
-        <div className="workspace-hero__actions">
-          <Link className="workspace-button workspace-button--primary" to="/contact">Get a quote <span>↗</span></Link>
-          <a className="workspace-button" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat <span>↗</span></a>
-        </div>
-      </div>
-    </section>
+      <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
+        <motion.p className="hero__kicker" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.15 }}>
+          <span className="hero__kicker-dot" aria-hidden="true" />Residential interiors&nbsp;&nbsp;•&nbsp;&nbsp;Lifestyle planning&nbsp;&nbsp;•&nbsp;&nbsp;Material harmony
+        </motion.p>
+        <h1 className="hero__title">
+          <span className="hero__line hero__line--1"><motion.span className="hero__line-mask" initial={{ clipPath: 'inset(0 100% 0 0)' }} animate={{ clipPath: 'inset(0 0% 0 0)' }} transition={{ duration: 1.05, delay: 0.3 }}>Residential</motion.span></span>
+          <span className="hero__line hero__line--2"><motion.span className="hero__line-inner" initial={{ clipPath: 'inset(0 100% 0 0)', opacity: 0 }} animate={{ clipPath: 'inset(0 0% 0 0)', opacity: 1 }} transition={{ duration: 0.72, delay: 0.48 }}>interiors</motion.span></span>
+        </h1>
+        <motion.p className="hero__sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.85 }}>
+          Thoughtfully designed residential interiors that bring comfort, character, and acoustic calm to the way you and your family live.
+        </motion.p>
+        <motion.div className="hero__ctas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.05 }}>
+          <Link className="hero__cta hero__cta--primary" to="/contact">Get a quote <span aria-hidden="true">&#8594;</span></Link>
+          <Link className="hero__cta hero__cta--solutions" to="#residential-spaces">Explore spaces <span aria-hidden="true">&#8599;</span></Link>
+        </motion.div>
+        <motion.div className="hero__rail residential-page-hero__rail" aria-label="Residential capabilities" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1.25 }}>
+          <span>01 / Living spaces</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+          <span>02 / Bedrooms</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+          <span>03 / Home offices</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+          <span>04 / Personal retreats</span>
+        </motion.div>
+      </motion.div>
+      <div className="hero__scroll" aria-hidden="true" />
+    </header>
   );
 }
 

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Reveal from '../components/Reveal';
 import { CONTACT, HIGHLIGHTS } from '../data/siteData';
 import { IMAGES } from '../data/projects';
@@ -48,6 +48,15 @@ export default function Contact() {
   const [values, setValues] = useState(INITIAL);
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
+  const contentY = useTransform(scrollYProgress, [0, 0.55], ['0%', '-12%']);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const set = (key) => (e) => {
     setValues((v) => ({ ...v, [key]: e.target.value }));
@@ -88,39 +97,42 @@ export default function Contact() {
 
   return (
     <>
-      <section className="page-hero contact-hero">
-        <div className="contact-hero__media" aria-hidden="true">
-          <img src={IMAGES.contactHero} alt="" loading="eager" decoding="async" onError={onImgError} />
-          <div className="contact-hero__veil" aria-hidden="true" />
+      <header className="hero contact-hero contact-page-hero" id="contact-top" ref={heroRef}>
+        <div className="hero__media" aria-hidden="true">
+          <motion.img
+            className="hero__img"
+            src={IMAGES.contactHeroBackground}
+            alt="Warm, refined interior ready for a considered design conversation"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            draggable={false}
+            onError={onImgError}
+            style={{ y: imageY }}
+          />
+          <motion.div className="hero__veil" style={{ opacity: veilOpacity }} />
         </div>
-        <div className="page-hero__inner container">
-          <Reveal>
-            <p className="kicker">
-              <span className="kicker__dot" aria-hidden="true" />
-              Contact
-            </p>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h1 className="page-hero__title">
-              Ready to <em>start?</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <p className="page-hero__lede">
-              Share a few details and we’ll send next steps within 24 hours.
-            </p>
-          </Reveal>
-          <Reveal delay={0.22}>
-            <div className="contact-hero__actions">
-              <a className="contact-hero__button contact-hero__button--primary" href="#contact-form">
-                Start your enquiry <span aria-hidden="true">↓</span>
-              </a>
-              <a className="contact-hero__button" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">
-                Chat on WhatsApp <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </Reveal>
-        </div>
+        <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
+          <motion.p className="hero__kicker" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.15 }}>
+            <span className="hero__kicker-dot" aria-hidden="true" />Contact&nbsp;&nbsp;•&nbsp;&nbsp;Start a project&nbsp;&nbsp;•&nbsp;&nbsp;Ecovation Interiors
+          </motion.p>
+          <h1 className="hero__title">
+            <span className="hero__line hero__line--1"><motion.span className="hero__line-mask" initial={{ clipPath: 'inset(0 100% 0 0)' }} animate={{ clipPath: 'inset(0 0% 0 0)' }} transition={{ duration: 1.05, delay: 0.3 }}>Ready to</motion.span></span>
+            <span className="hero__line hero__line--2"><motion.span className="hero__line-inner" initial={{ clipPath: 'inset(0 100% 0 0)', opacity: 0 }} animate={{ clipPath: 'inset(0 0% 0 0)', opacity: 1 }} transition={{ duration: 0.72, delay: 0.48 }}>start?</motion.span></span>
+          </h1>
+          <motion.p className="hero__sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.85 }}>
+            Share a few details and we’ll send next steps within 24 hours.
+          </motion.p>
+          <motion.div className="hero__ctas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.05 }}>
+            <a className="hero__cta hero__cta--primary" href="#contact-form">Start your enquiry <span aria-hidden="true">&#8595;</span></a>
+            <a className="hero__cta hero__cta--solutions" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat on WhatsApp <span aria-hidden="true">&#8599;</span></a>
+          </motion.div>
+          <motion.div className="hero__rail contact-page-hero__rail" aria-label="Ways to start a project" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1.25 }}>
+            <span>01 / Workspace design</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+            <span>02 / Residential interiors</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+            <span>03 / Acoustic solutions</span>
+          </motion.div>
+        </motion.div>
         <Reveal className="contact-hero__aside" delay={0.22}>
           <p className="contact-hero__aside-label">The Ecovation standard</p>
           <p className="contact-hero__aside-copy">Sustainable interiors and acoustic solutions designed for better spaces.</p>
@@ -133,7 +145,8 @@ export default function Contact() {
             ))}
           </div>
         </Reveal>
-      </section>
+        <div className="hero__scroll" aria-hidden="true" />
+      </header>
 
       <section className="contact-page container" id="contact-form">
         <div className="contact-page__grid">

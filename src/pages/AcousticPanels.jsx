@@ -1,6 +1,8 @@
 import Reveal from '../components/Reveal';
 import ParallaxImage from '../components/ParallaxImage';
 import CTASection from '../components/CTASection';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import {
   ACOUSTIC_SOLUTIONS,
   ACOUSTIC_BENEFITS,
@@ -58,22 +60,56 @@ export default function AcousticPanels() {
 }
 
 function Hero() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
+  const contentY = useTransform(scrollYProgress, [0, 0.55], ['0%', '-12%']);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="workspace-hero ac-hero">
-      <div className="workspace-hero__media" aria-hidden="true">
-        <img src={IMAGES.acousticHero} alt="" loading="eager" decoding="async" onError={onImgError} />
-        <div className="workspace-hero__veil" />
+    <header className="hero acoustic-page-hero" id="acoustic-top" ref={heroRef}>
+      <div className="hero__media" aria-hidden="true">
+        <motion.img
+          className="hero__img"
+          src={IMAGES.acousticHeroBackground}
+          alt="Architectural acoustic panels in a refined interior"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          draggable={false}
+          onError={onImgError}
+          style={{ y: imageY }}
+        />
+        <motion.div className="hero__veil" style={{ opacity: veilOpacity }} />
       </div>
-      <div className="workspace-hero__inner container">
-        <Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />Acoustic solutions</p></Reveal>
-        <Reveal delay={0.08}><h1>PET acoustic <em>panels</em></h1></Reveal>
-        <Reveal delay={0.16}><p>Advanced sound solutions made from recycled PET materials for superior acoustic performance and sustainable interior design.</p></Reveal>
-        <div className="workspace-hero__actions">
-          <a className="workspace-button workspace-button--primary" href="/contact">Get a quote <span>↗</span></a>
-          <a className="workspace-button" href={CONTACT.whatsappHref} target="_blank" rel="noreferrer">Chat <span>↗</span></a>
-        </div>
-      </div>
-    </section>
+      <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
+        <motion.p className="hero__kicker" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.15 }}>
+          <span className="hero__kicker-dot" aria-hidden="true" />Acoustic solutions&nbsp;&nbsp;•&nbsp;&nbsp;Recycled PET&nbsp;&nbsp;•&nbsp;&nbsp;Interior performance
+        </motion.p>
+        <h1 className="hero__title">
+          <span className="hero__line hero__line--1"><motion.span className="hero__line-mask" initial={{ clipPath: 'inset(0 100% 0 0)' }} animate={{ clipPath: 'inset(0 0% 0 0)' }} transition={{ duration: 1.05, delay: 0.3 }}>PET acoustic</motion.span></span>
+          <span className="hero__line hero__line--2"><motion.span className="hero__line-inner" initial={{ clipPath: 'inset(0 100% 0 0)', opacity: 0 }} animate={{ clipPath: 'inset(0 0% 0 0)', opacity: 1 }} transition={{ duration: 0.72, delay: 0.48 }}>panels</motion.span></span>
+        </h1>
+        <motion.p className="hero__sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.85 }}>
+          Advanced sound solutions made from recycled PET materials for superior acoustic performance and sustainable interior design.
+        </motion.p>
+        <motion.div className="hero__ctas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.05 }}>
+          <a className="hero__cta hero__cta--primary" href="/contact">Get a quote <span aria-hidden="true">&#8594;</span></a>
+          <a className="hero__cta hero__cta--solutions" href="#products">Explore solutions <span aria-hidden="true">&#8599;</span></a>
+        </motion.div>
+        <motion.div className="hero__rail acoustic-page-hero__rail" aria-label="Acoustic panel applications" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1.25 }}>
+          <span>01 / Ceiling clouds</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+          <span>02 / Wall panels</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+          <span>03 / Acoustic screens</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+          <span>04 / Custom acoustics</span>
+        </motion.div>
+      </motion.div>
+      <div className="hero__scroll" aria-hidden="true" />
+    </header>
   );
 }
 

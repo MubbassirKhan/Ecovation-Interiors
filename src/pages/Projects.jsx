@@ -229,58 +229,59 @@ export default function ProjectsPage() {
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '24%']);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.4]);
+  const contentY = useTransform(scrollYProgress, [0, 0.55], ['0%', '-12%']);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <>
       {/* ═══ HERO ══════════════════════════════════════════════ */}
-      <section className="projects-pg-hero" ref={heroRef} aria-label="Projects hero">
-        <motion.div className="projects-pg-hero__bg" style={{ y: heroY }} aria-hidden="true">
-          <img
+      <header className="hero projects-page-hero" id="projects-top" ref={heroRef} aria-label="Projects hero">
+        <div className="hero__media" aria-hidden="true">
+          <motion.img
+            className="hero__img"
             src={IMAGES.workspaceHero}
-            alt=""
+            alt="Open-plan workspace with natural light and considered workstations"
             loading="eager"
             decoding="async"
             fetchPriority="high"
+            draggable={false}
+            style={{ y: imageY }}
           />
-          <div className="projects-pg-hero__veil" />
+          <motion.div className="hero__veil" style={{ opacity: veilOpacity }} />
+        </div>
+        <motion.div className="hero__content container" style={{ y: contentY, opacity: contentOpacity }}>
+          <motion.p className="hero__kicker" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.15 }}>
+            <span className="hero__kicker-dot" aria-hidden="true" />Our portfolio&nbsp;&nbsp;•&nbsp;&nbsp;Workspace design&nbsp;&nbsp;•&nbsp;&nbsp;Acoustic interiors
+          </motion.p>
+          <h1 className="hero__title">
+            <span className="hero__line hero__line--1"><motion.span className="hero__line-mask" initial={{ clipPath: 'inset(0 100% 0 0)' }} animate={{ clipPath: 'inset(0 0% 0 0)' }} transition={{ duration: 1.05, delay: 0.3 }}>Work that</motion.span></span>
+            <span className="hero__line hero__line--2"><motion.span className="hero__line-inner" initial={{ clipPath: 'inset(0 100% 0 0)', opacity: 0 }} animate={{ clipPath: 'inset(0 0% 0 0)', opacity: 1 }} transition={{ duration: 0.72, delay: 0.48 }}>speaks for itself.</motion.span></span>
+          </h1>
+          <motion.p className="hero__sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.85 }}>
+            200+ workspace, acoustic and residential projects delivered across India—each one a collaboration between Ecovation's design team and a client who wanted more from their space.
+          </motion.p>
+          <motion.div className="hero__ctas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 1.05 }}>
+            <a className="hero__cta hero__cta--primary" href="#proj-overview">See our work <span aria-hidden="true">&#8595;</span></a>
+            <Link className="hero__cta hero__cta--solutions" to="/contact">Start a project <span aria-hidden="true">&#8599;</span></Link>
+          </motion.div>
+          <motion.div className="hero__rail projects-page-hero__rail" aria-label="Portfolio categories" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2, delay: 1.25 }}>
+            <span>01 / Workspaces</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+            <span>02 / Acoustic interiors</span><span className="hero__rail-sep" aria-hidden="true">&#183;</span>
+            <span>03 / Residential spaces</span>
+          </motion.div>
         </motion.div>
-
-        <div className="projects-pg-hero__inner container">
-          <Reveal>
-            <p className="kicker">
-              <span className="kicker__dot" aria-hidden="true" />
-              Our portfolio
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h1 className="projects-pg-hero__title">
-              Work that<br /><em>speaks for itself.</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.18}>
-            <p className="projects-pg-hero__lede">
-              200+ workspace, acoustic and residential projects delivered across India —
-              each one a collaboration between Ecovation's design team and a client
-              who wanted more from their space.
-            </p>
-          </Reveal>
-          <Reveal delay={0.26}>
-            <div className="projects-pg-hero__actions">
-              <a className="projects-pg-hero__cta projects-pg-hero__cta--solid" href="#proj-overview">
-                See our work <span aria-hidden="true">↓</span>
-              </a>
-              <Link className="projects-pg-hero__cta projects-pg-hero__cta--ghost" to="/contact">
-                Start a project <span aria-hidden="true">↗</span>
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="projects-pg-hero__scroll" aria-hidden="true">
-          <span />
-        </div>
-      </section>
+        <motion.aside className="hero__aside" initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 1.0 }}>
+          <p className="hero__aside-label">The Ecovation standard</p>
+          <p className="hero__aside-copy">Work shaped by sustainable materials, thoughtful planning and exacting execution.</p>
+          <div className="hero__aside-stats">
+            <div className="hero__aside-stat"><strong className="hero__aside-stat-num">200+</strong><span className="hero__aside-stat-label">Projects</span></div>
+            <div className="hero__aside-stat"><strong className="hero__aside-stat-num">6</strong><span className="hero__aside-stat-label">Typologies</span></div>
+          </div>
+        </motion.aside>
+        <div className="hero__scroll" aria-hidden="true" />
+      </header>
 
       {/* ═══ OVERVIEW ══════════════════════════════════════════ */}
       <section className="proj-overview" id="proj-overview" aria-label="Portfolio overview">
