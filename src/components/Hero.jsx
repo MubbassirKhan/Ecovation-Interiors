@@ -130,7 +130,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 1.05 }}
         >
-          <Link className="hero__cta hero__cta--primary" to="/contact">
+          <Link className="hero__cta hero__cta--primary hero__cta--start-project" to="/contact">
             Start a project <span aria-hidden="true">&#8594;</span>
           </Link>
           <Link className="hero__cta hero__cta--solutions" to="/workspaces">
