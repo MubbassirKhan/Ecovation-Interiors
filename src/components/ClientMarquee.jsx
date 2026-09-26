@@ -1,6 +1,14 @@
 const clientAsset = (fileName) => encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/client list/${fileName}`);
 
 const CLIENT_LOGOS = [
+  ['HP', clientAsset('hp_logo.png')],
+  ['Legrand', clientAsset('Legrand-Logo.jpg')],
+  ['Honeywell', clientAsset('Honeywell-Symbol.png')],
+  ['Godrej', clientAsset('Godrej Logo.png')],
+  ['Kirloskar', clientAsset('Kirloskar logo.jpg')],
+  ['Amex Bank', clientAsset('Amex logo.avif')],
+  ['Mankind', clientAsset('Mankind Logo.png')],
+  ['PayU', clientAsset('_PayULogo1.jpeg')],
   ['Ericsson', clientAsset('Ericsson_logo.svg.webp')],
   ['Swiggy', clientAsset('Swiggy-Simbolo.png')],
   ['NTT Data', clientAsset('NTT Data.png')],
@@ -17,7 +25,21 @@ const CLIENT_LOGOS = [
   ['Embassy Group', clientAsset('embassy-group-logo-png_seeklogo-338881.png')],
 ];
 
-const LIGHT_BACKGROUND_LOGOS = new Set(['Embassy Group', 'Eurofins Scientific', 'Hitachi', 'KPMG', 'Qualcomm', 'Toyota']);
+const LIGHT_BACKGROUND_LOGOS = new Set([
+  'Amex Bank',
+  'Embassy Group',
+  'Eurofins Scientific',
+  'Godrej',
+  'Hitachi',
+  'HP',
+  'KPMG',
+  'Kirloskar',
+  'Legrand',
+  'Mankind',
+  'PayU',
+  'Qualcomm',
+  'Toyota',
+]);
 
 export default function ClientMarquee({ className = '' }) {
   return (
