@@ -1,3 +1,5 @@
+import { useRef, useState } from 'react';
+
 const clientAsset = (fileName) => encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/client list/${fileName}`);
 
 const CLIENT_LOGOS = [
@@ -41,19 +43,71 @@ const LIGHT_BACKGROUND_LOGOS = new Set([
   'Toyota',
 ]);
 
-export default function ClientMarquee({ className = '' }) {
+function MarqueeRow({ logos, direction }) {
+  const rowRef = useRef(null);
+  const dragState = useRef({ active: false, startX: 0, startScrollLeft: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handlePointerDown = (event) => {
+    const row = rowRef.current;
+    if (!row) return;
+
+    dragState.current = {
+      active: true,
+      startX: event.clientX,
+      startScrollLeft: row.scrollLeft,
+    };
+    row.setPointerCapture(event.pointerId);
+    setIsDragging(true);
+  };
+
+  const handlePointerMove = (event) => {
+    const row = rowRef.current;
+    const { active, startX, startScrollLeft } = dragState.current;
+    if (!row || !active) return;
+
+    row.scrollLeft = startScrollLeft - (event.clientX - startX);
+  };
+
+  const stopDragging = (event) => {
+    const row = rowRef.current;
+    if (row?.hasPointerCapture(event.pointerId)) {
+      row.releasePointerCapture(event.pointerId);
+    }
+    dragState.current.active = false;
+    setIsDragging(false);
+  };
+
   return (
-    <div className={`client-marquee ${className}`.trim()} aria-label="Ecovation clients">
-      <div className="client-marquee__track" aria-live="off">
+    <div
+      ref={rowRef}
+      className={`client-marquee__row${isDragging ? ' client-marquee__row--dragging' : ''}`}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={stopDragging}
+      onPointerCancel={stopDragging}
+    >
+      <div className={`client-marquee__track client-marquee__track--${direction}`} aria-live="off">
         {[0, 1].map((copy) => (
           <div className="client-marquee__group" key={copy} aria-hidden={copy === 1}>
-            {CLIENT_LOGOS.map(([name, src]) => (
-              <div className={`client-marquee__item${LIGHT_BACKGROUND_LOGOS.has(name) ? ' client-marquee__item--light' : ''}`} key={`${copy}-${name}`}>
-                <img src={src} alt={copy === 0 ? name : ''} loading="lazy" decoding="async" />
+            {logos.map(([name, src]) => (
+              <div className={`client-marquee__item${LIGHT_BACKGROUND_LOGOS.has(name) ? ' client-marquee__item--light' : ''}`} key={`${direction}-${copy}-${name}`}>
+                <img src={src} alt={copy === 0 ? name : ''} loading="lazy" decoding="async" draggable="false" />
               </div>
             ))}
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+export default function ClientMarquee({ className = '' }) {
+  return (
+    <div className={`client-marquee ${className}`.trim()} aria-label="Ecovation clients">
+      <div className="client-marquee__rows">
+        <MarqueeRow logos={CLIENT_LOGOS} direction="forward" />
+        <MarqueeRow logos={[...CLIENT_LOGOS].reverse()} direction="reverse" />
       </div>
     </div>
   );

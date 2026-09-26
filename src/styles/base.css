@@ -60,6 +60,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 html,
 body {
   min-height: 100%;
@@ -337,6 +342,16 @@ button {
     bottom: 1rem;
     width: 2.85rem;
     height: 2.85rem;
+  }
+}
+
+@keyframes clients-marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
   }
 }
 
@@ -2678,7 +2693,7 @@ button {
   min-height: auto;
   display: flex;
   align-items: center;
-  padding-block: clamp(3.5rem, 7vh, 5.5rem);
+  padding-block: clamp(2.5rem, 5vh, 4.25rem);
   overflow: hidden;
   background: var(--bg);
   border-block: 1px solid var(--line-soft);
@@ -2717,6 +2732,7 @@ button {
 .clients__title {
   font-family: var(--font-display);
   font-weight: 500;
+  width: 100%;
   max-width: none;
   font-size: clamp(3rem, 5vw, 5rem);
   line-height: 1.02;
@@ -2730,7 +2746,8 @@ button {
 }
 
 .clients__lede {
-  max-width: 45ch;
+  width: 100%;
+  max-width: none;
   margin-top: 1.4rem;
   color: var(--ink-2);
   font-size: clamp(0.95rem, 1.2vw, 1.1rem);
@@ -2742,7 +2759,7 @@ button {
   overflow: hidden;
   width: calc(100% + 2 * clamp(1rem, 4vw, 3rem));
   margin-left: calc(-1 * clamp(1rem, 4vw, 3rem));
-  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-top: clamp(3rem, 5vw, 4rem);
   padding-inline: clamp(1rem, 4vw, 3rem);
   border: 0;
   mask-image: none;
@@ -2759,9 +2776,9 @@ button {
 }
 
 .clients__marquee .client-marquee__item {
-  flex: 0 0 clamp(12rem, 19vw, 18rem);
-  height: clamp(8rem, 11vw, 10rem);
-  padding: 1.35rem;
+  flex: 0 0 clamp(7rem, 10vw, 10rem);
+  height: clamp(5rem, 8vw, 6.5rem);
+  padding: 0.6rem;
   border: 1px solid rgba(189, 154, 98, 0.38);
   background: rgba(13, 12, 11, 0.48);
   box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.18);
@@ -2769,7 +2786,7 @@ button {
 }
 
 .clients__marquee .client-marquee__item img {
-  height: 5.25rem;
+  height: 3.75rem;
 }
 
 .client-marquee__control {
@@ -2799,7 +2816,7 @@ button {
 .clients__stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: clamp(2.25rem, 4vw, 3.5rem);
+  margin-top: 0;
   border-top: 1px solid var(--line-soft);
 }
 
@@ -2855,20 +2872,26 @@ button {
   .clients__title {
     max-width: none;
     font-size: clamp(2rem, 9vw, 3rem);
+    width: 100%;
+    overflow-wrap: anywhere;
   }
-  .clients { padding-block: 3rem; }
+  .clients__title span {
+    white-space: normal;
+  }
+  .clients { padding-block: 2.25rem; }
   .clients__marquee {
     width: calc(100% + 2rem);
     margin-left: -1rem;
     padding-inline: 1rem;
+    margin-top: 2.5rem;
   }
   .clients__marquee .client-marquee__group { gap: 0.7rem; padding-right: 0.7rem; }
   .clients__marquee .client-marquee__item {
-    flex-basis: min(68vw, 14rem);
-    height: 7.5rem;
-    padding: 1rem;
+    flex-basis: min(42vw, 8.5rem);
+    height: 5.5rem;
+    padding: 0.6rem;
   }
-  .clients__marquee .client-marquee__item img { height: 4rem; }
+  .clients__marquee .client-marquee__item img { height: 3.25rem; }
   .clients__stats { grid-template-columns: 1fr 1fr; }
   .clients__stat {
     min-width: 0;
@@ -5309,18 +5332,48 @@ button {
 .client-marquee {
   position: relative;
   overflow: hidden;
+  overflow-y: hidden;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   border-block: 1px solid var(--line-soft);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-overflow-scrolling: touch;
 }
 
 .client-marquee__track {
   display: flex;
   width: max-content;
-  animation: clients-marquee 42s linear infinite;
+  animation: clients-marquee 72s linear infinite;
   will-change: transform;
+}
+
+.client-marquee__track--reverse {
+  animation-name: clients-marquee-reverse;
+}
+
+.client-marquee__rows {
+  display: grid;
+  gap: 0;
+  width: 100%;
+}
+
+.client-marquee__row {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.client-marquee__row::-webkit-scrollbar {
+  display: none;
+}
+
+.client-marquee__row--dragging {
+  cursor: grabbing;
 }
 
 .client-marquee__group {
@@ -5328,16 +5381,17 @@ button {
   gap: 0;
 }
 
-.client-marquee:hover .client-marquee__track {
+.client-marquee__row:hover .client-marquee__track,
+.client-marquee__row:focus-within .client-marquee__track {
   animation-play-state: paused;
 }
 
 .client-marquee__item {
   display: grid;
   place-items: center;
-  flex: 0 0 clamp(12rem, 19vw, 18rem);
-  height: clamp(9rem, 15vw, 12rem);
-  padding: 1.25rem 2.2rem;
+  flex: 0 0 clamp(8rem, 12vw, 12rem);
+  height: clamp(5.5rem, 9vw, 8rem);
+  padding: 0.75rem 1.25rem;
   border-right: 1px solid var(--line);
   background: rgba(244, 239, 230, 0.02);
   transition: background 0.45s var(--ease-out);
@@ -5350,7 +5404,7 @@ button {
 .client-marquee__item img {
   display: block;
   width: 100%;
-  height: 6rem;
+  height: 4.25rem;
   object-fit: contain;
   filter: none;
   opacity: 1;
@@ -7703,7 +7757,7 @@ a.contact-detail__value:hover {
 
   .about-clients__track,
   .client-marquee__track {
-    animation-duration: 34s;
+    animation-duration: 64s;
   }
 
   .about-contact__header {
