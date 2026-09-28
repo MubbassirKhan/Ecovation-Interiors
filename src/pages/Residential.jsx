@@ -26,17 +26,17 @@ const DESIGN_APPROACH = [
 
 const RESIDENTIAL_IMAGES = [
   [IMAGES.residentialLiving, 'Warm living area with a refined material palette'],
-  [IMAGES.residentialBedroom, 'A quiet bedroom designed for rest'],
-  [IMAGES.residentialOffice, 'A focused home office with considered acoustic details'],
-  [IMAGES.residentialDetails, 'Residential details made for everyday living'],
-  [IMAGES.residentialThird, 'A considered residential interior'],
-  [IMAGES.residentialService, 'A refined residential setting'],
+  [IMAGES.residentialBedroom, 'A calm bedroom designed for rest'],
+  [IMAGES.residentialOffice, 'A serene prayer hall designed for reflection and calm'],
+  [IMAGES.residentialDetails, 'A refined kitchen with warm natural textures'],
+  [IMAGES.residentialThird, 'A welcoming dining setting for shared everyday moments'],
+  [IMAGES.residentialService, 'A polished residential lobby with a considered palette'],
 ];
 
 const FEATURES = [
   ['Living Spaces', 'Designed for comfort, conversation and everyday moments.', 'Warm spaces for relaxation, family time and elegant everyday living.', RESIDENTIAL_IMAGES[0]],
   ['Bedroom', 'Calm materials, thoughtful lighting and acoustic comfort.', 'Peaceful rooms with thoughtful lighting, calming materials and acoustic comfort.', RESIDENTIAL_IMAGES[1]],
-  ['Home Office', 'Focused environments designed for productivity and comfort.', 'Focused work-from-home environments balancing productivity and ease.', RESIDENTIAL_IMAGES[2]],
+  ['Prayer Hall', 'Quiet spaces designed for stillness, reflection and calm.', 'Serene gathering spaces shaped to create peace, comfort and spiritual ease.', RESIDENTIAL_IMAGES[2]],
 ];
 
 const WHY_ECOVATION = ['Sustainable Material Choices', 'Premium Craftsmanship', 'Personalized Planning', 'Acoustic Comfort', 'Timeless Modern Interiors'];
@@ -161,7 +161,9 @@ function SpacesSection() {
 function FeaturesSection() {
   return <section className="residential-features container" aria-label="Residential features">
     {FEATURES.map(([title, body, description, [src, alt]], index) => <Reveal className={`residential-feature ${index % 2 ? 'residential-feature--flip' : ''}`} key={title}>
-      <img src={src} alt={alt} loading="lazy" onError={onImgError} />
+      <div className="residential-feature__media">
+        <img src={src} alt={alt} loading="lazy" onError={onImgError} />
+      </div>
       <div><p className="kicker"><span className="kicker__dot" aria-hidden="true" />{title}</p><h2>{body}</h2><p>{description}</p></div>
     </Reveal>)}
   </section>;
