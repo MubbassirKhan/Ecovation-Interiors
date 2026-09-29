@@ -4943,9 +4943,9 @@ button {
 /* ── Supporting team grid ── */
 .ecov-team__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(1rem, 2vw, 1.5rem);
-  max-width: 64rem;
+  max-width: 88rem;
 }
 
 /* ── Member card ── */
@@ -5053,7 +5053,7 @@ button {
 /* ── Responsive ── */
 @media (max-width: 1100px) {
   .ecov-team__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -5065,7 +5065,7 @@ button {
   }
 
   .ecov-team__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -9376,6 +9376,24 @@ a.contact-detail__value:hover {
   }
 }
 
+@media (max-width: 639px) {
+  .about-signature__inner {
+    width: 100%;
+    padding-inline: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .about-signature__copy {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .about-signature__copy p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
 .ac-benefits__header {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.65fr);
@@ -9488,5 +9506,15 @@ a.contact-detail__value:hover {
 
   .ac-benefits__card--custom {
     grid-column: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  main .mission__body {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    text-align: justify;
+    text-justify: inter-word;
   }
 }
