@@ -118,7 +118,7 @@ function WhatIsPET() {
   return (
     <section className="acoustic-intro">
       <div className="container">
-        <Reveal className="acoustic-intro__heading"><p className="kicker"><span className="kicker__dot" aria-hidden="true" />What PET is</p><h2>Sound-absorbing boards, <em>pressed from recycled bottles.</em></h2></Reveal>
+        <Reveal className="acoustic-intro__heading"><p className="kicker"><span className="kicker__dot" aria-hidden="true" />What PET is</p><h2><span>Sound-absorbing </span><span>boards, <em>pressed from </em></span><em>recycled bottles.</em></h2></Reveal>
         <Reveal className="acoustic-intro__copy" delay={0.1}><p>{PET_NOTE}</p><ul>{['At least 75% recycled PET', 'Lightweight and durable', 'Low VOC and mold-resistant', 'Fire rated to EN13501-1'].map(item => <li key={item}><span aria-hidden="true" />{item}</li>)}</ul></Reveal>
       </div>
     </section>

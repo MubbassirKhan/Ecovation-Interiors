@@ -120,7 +120,14 @@ function IntroSection() {
   return (
     <section className="workspace-about container residential-intro">
       <div className="workspace-about__intro">
-        <Reveal><p className="kicker"><span className="kicker__dot" aria-hidden="true" />Residential philosophy</p><h2>The same principles that make offices calm <em>make homes better, too.</em></h2></Reveal>
+        <Reveal>
+          <p className="kicker"><span className="kicker__dot" aria-hidden="true" />Residential philosophy</p>
+          <h2>
+            <span className="residential-intro__line">The same principles that</span>
+            <span className="residential-intro__line">make offices calm</span>
+            <span className="residential-intro__line residential-intro__line--em"><em>make homes better, too.</em></span>
+          </h2>
+        </Reveal>
       </div>
       <Reveal className="residential-intro__copy" delay={0.1}><p>Each room is designed around lifestyle, with acoustic comfort, lighting design and material selection refined to the way the home is used.</p></Reveal>
     </section>

@@ -3,7 +3,6 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollToTopButton from './ScrollToTopButton';
-import DevelopmentNotice from './DevelopmentNotice';
 
 /**
  * Layout — fixed nav + routed page + footer.
@@ -42,7 +41,6 @@ export default function Layout() {
       </main>
       <Footer />
       <ScrollToTopButton />
-      <DevelopmentNotice />
     </div>
   );
 }
