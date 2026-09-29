@@ -273,6 +273,7 @@ button {
 .acoustic-intro > .container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(3rem, 8vw, 9rem); align-items: start; }
 .acoustic-intro__heading h2, .ac-section-heading h2, .ac-process h2 { max-width: 14ch; margin-top: 1.2rem; font: 500 clamp(2.7rem, 5vw, 5rem)/.98 var(--font-display); text-wrap: balance; }
 .acoustic-intro__heading h2 { max-width: none; }
+.ac-process h2 { max-width: none; }
 .acoustic-intro__heading h2 em, .ac-section-heading h2 em, .ac-process h2 em, .ac-benefits__title em { color: #e6d3b3; font-style: italic; font-weight: 400; }
 .acoustic-intro__copy { padding-top: 3.5rem; }
 .acoustic-intro__copy > p { max-width: 45ch; color: var(--ink-2); line-height: 1.8; }
@@ -298,7 +299,7 @@ button {
 .ac-process__item h3 { font: 500 1.4rem/1.1 var(--font-display); }
 .ac-process__item p { margin-top: .6rem; color: var(--muted); font-size: .82rem; line-height: 1.6; }
 .ac-benefits { padding-block: var(--sect-pad); background: var(--bg); }
-.ac-benefits__title { max-width: 14ch; margin-top: 1.2rem; font: 500 clamp(2.7rem, 5vw, 5rem)/.98 var(--font-display); text-wrap: balance; }
+.ac-benefits__title { max-width: none; margin-top: 1.2rem; font: 500 clamp(2.7rem, 5vw, 5rem)/.98 var(--font-display); text-wrap: balance; }
 .ac-benefits__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(2rem, 6vw, 7rem); margin-top: clamp(3rem, 6vw, 5rem); }
 .ac-benefits__card { padding: 1.4rem 0 1.8rem; border-top: 1px solid var(--line-soft); }
 .ac-benefits__card-title { font-size: clamp(1.6rem, 2.5vw, 2.3rem); }
@@ -5743,21 +5744,46 @@ button {
 .ac-benefits__title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-size: clamp(2.6rem, 4.2vw, 4.4rem);
+  line-height: 1;
   text-wrap: balance;
   margin-top: 1.3rem;
+  max-width: 20ch;
+}
+
+.ac-benefits__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.65fr);
+  align-items: end;
+  gap: clamp(2rem, 6vw, 7rem);
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ac-benefits__lede {
+  max-width: 38ch;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--brass);
+  color: var(--ink-2);
+  line-height: 1.75;
 }
 
 .ac-benefits__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 1fr));
   gap: clamp(1.5rem, 3vw, 3rem);
 }
 
 .ac-benefits__card {
-  padding: 1.6rem 0 0;
+  min-width: 0;
+  padding: 1.25rem 0 0;
   border-top: 1px solid var(--line-soft);
+}
+
+.ac-benefits__index {
+  color: var(--brass);
+  font: 500 0.62rem/1.4 var(--font-sans);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
 .ac-benefits__num {
@@ -5769,14 +5795,66 @@ button {
 .ac-benefits__card-title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.5rem;
-  margin-top: 0.9rem;
+  font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+  line-height: 1.15;
+  margin-top: 0.8rem;
 }
 
 .ac-benefits__card-body {
   color: var(--muted);
-  margin-top: 0.7rem;
+  margin-top: 1.1rem;
   font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.ac-benefits__specs {
+  display: grid;
+  gap: 0;
+  margin-top: 1.1rem;
+}
+
+.ac-benefits__specs li {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line-soft);
+  border-left: 1px solid rgba(189, 154, 98, 0.45);
+  border-radius: 0;
+  padding: 0.62rem 0 0.62rem 0.8rem;
+  letter-spacing: 0.06em;
+  line-height: 1.55;
+}
+
+.ac-benefits__applications {
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+}
+
+.ac-benefits__applications li {
+  border-radius: 2px;
+  padding: 0.5rem 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.ac-benefits__metric {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.8rem;
+  margin-top: 1.4rem;
+}
+
+.ac-benefits__metric strong {
+  color: var(--ink);
+  font: 500 clamp(3.5rem, 6vw, 5.5rem)/0.9 var(--font-display);
+}
+
+.ac-benefits__metric span {
+  max-width: 13ch;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 /* ------------------------------------------------------------
@@ -9295,5 +9373,120 @@ a.contact-detail__value:hover {
     display: inline;
     margin: 0 0.65rem;
     color: var(--brass);
+  }
+}
+
+.ac-benefits__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.65fr);
+  align-items: end;
+  gap: clamp(2rem, 6vw, 7rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ac-benefits__header > div {
+  min-width: 0;
+}
+
+.ac-benefits__lede {
+  max-width: 38ch;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--brass);
+  color: var(--ink-2);
+  line-height: 1.75;
+  text-align: left;
+}
+
+.ac-benefits__grid {
+  grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(0, 0.9fr));
+  gap: clamp(1rem, 2vw, 1.8rem);
+}
+
+.ac-benefits__card {
+  min-width: 0;
+  padding: clamp(1.2rem, 2vw, 1.8rem);
+  border: 1px solid var(--line-soft);
+  border-top-color: var(--brass);
+  background: rgba(13, 12, 11, 0.32);
+}
+
+.ac-benefits__card-title {
+  text-align: left;
+}
+
+.ac-benefits__specs li {
+  border: 0;
+  border-bottom: 1px solid var(--line-soft);
+  border-radius: 0;
+  padding: 0.62rem 0;
+  color: var(--ink-2);
+  font: 400 0.76rem/1.5 var(--font-sans);
+  letter-spacing: 0;
+  text-align: left;
+  text-transform: none;
+}
+
+.ac-benefits__applications li,
+.ac-benefits__options li {
+  max-width: 100%;
+  border-radius: 2px;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.ac-benefits__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+}
+
+.ac-benefits__options li {
+  padding: 0.48rem 0.65rem;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.ac-benefits__metric,
+.ac-benefits__caption {
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .ac-benefits__header {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 2rem;
+  }
+
+  .ac-benefits__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ac-benefits__card--custom {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .ac-benefits__header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  main .ac-benefits__title,
+  main .ac-benefits__card-title {
+    text-align: left;
+  }
+
+  .ac-benefits__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-benefits__card--custom {
+    grid-column: auto;
   }
 }

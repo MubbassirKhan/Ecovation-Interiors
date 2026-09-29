@@ -60,7 +60,7 @@ export const ACOUSTIC_SOLUTIONS = [
     title: 'Acoustic Baffles',
     blurb:
       'Suspended vertical panels for open spaces and high ceilings, designed to reduce reverberation in large areas.',
-    image: IMAGES.acousticPanels,
+    image: IMAGES.acousticBaffles,
     notes: ['Open spaces', 'High ceilings', 'Reverberation control'],
   },
   {
@@ -69,7 +69,7 @@ export const ACOUSTIC_SOLUTIONS = [
     title: 'Cell Ceiling Systems',
     blurb:
       'Modular ceiling systems for comprehensive acoustic coverage in offices and commercial spaces.',
-    image: IMAGES.baffles,
+    image: IMAGES.cellCeilingSystems,
     notes: ['Modular system', 'Office interiors', 'Commercial spaces'],
   },
   {
@@ -78,7 +78,7 @@ export const ACOUSTIC_SOLUTIONS = [
     title: 'CNC Cut Panels',
     blurb:
       'Precision-cut custom patterns that combine acoustic functionality with architectural design.',
-    image: IMAGES.clouds,
+    image: IMAGES.cncCutPanels,
     notes: ['Custom patterns', 'Precision cutting', 'Architectural detail'],
   },
   {
@@ -87,7 +87,7 @@ export const ACOUSTIC_SOLUTIONS = [
     title: 'Acoustic Screens',
     blurb:
       'Portable and flexible solutions for creating private zones in open offices and dynamic spaces.',
-    image: IMAGES.screens,
+    image: IMAGES.acousticScreens,
     notes: ['Portable', 'Flexible', 'Private zones'],
   },
   {
@@ -96,7 +96,7 @@ export const ACOUSTIC_SOLUTIONS = [
     title: 'Acoustic Clouds',
     blurb:
       'Floating ceiling elements for decorative acoustic treatment that add visual interest while improving room acoustics.',
-    image: IMAGES.customAcoustics,
+    image: IMAGES.acousticClouds,
     notes: ['Floating elements', 'Ceiling treatment', 'Decorative acoustic'],
   },
   {
@@ -105,7 +105,7 @@ export const ACOUSTIC_SOLUTIONS = [
     title: 'Printed Panels',
     blurb:
       'Custom graphics and designs on acoustic surfaces for branding, artistic expression and unique environments.',
-    image: IMAGES.customAcoustics,
+    image: IMAGES.printedPanels,
     notes: ['Custom graphics', 'Brand expression', 'Printed surfaces'],
   },
 ];
@@ -140,7 +140,6 @@ export const PANEL_SPECS = [
   'NRC 0.30 - 0.95, depending on thickness and mounting',
   'EN13501-1: B-s1, d0 fire rating',
   'Low VOC, non-hygroscopic and mold-resistant',
-  '120+ standard EP-series colours',
 ];
 
 export const PANEL_APPLICATIONS = [

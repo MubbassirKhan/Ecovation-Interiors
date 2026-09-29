@@ -203,33 +203,38 @@ function PanelDetails() {
   return (
     <section className="ac-benefits">
       <div className="container">
-        <Reveal>
+        <Reveal className="ac-benefits__header">
+          <div>
           <p className="kicker">
             <span className="kicker__dot" aria-hidden="true" />
             Product data
           </p>
-        </Reveal>
-        <Reveal delay={0.08}>
           <h2 className="ac-benefits__title">Made for performance and flexibility</h2>
+          </div>
+          <p className="ac-benefits__lede">Performance specifications, applications and finish options for acoustic panels across walls, ceilings and screens.</p>
         </Reveal>
         <div className="ac-benefits__grid">
           <Reveal className="ac-benefits__card">
+            <span className="ac-benefits__index">01 / Material &amp; performance</span>
             <h3 className="ac-benefits__card-title">Product specifications</h3>
-            <ul className="ac-product__notes">
+            <ul className="ac-product__notes ac-benefits__specs">
               {PANEL_SPECS.map((spec) => <li key={spec}>{spec}</li>)}
             </ul>
           </Reveal>
           <Reveal className="ac-benefits__card" delay={0.08}>
+            <span className="ac-benefits__index">02 / Applications</span>
             <h3 className="ac-benefits__card-title">Perfect for every space</h3>
-            <ul className="ac-product__notes">
+            <ul className="ac-product__notes ac-benefits__applications">
               {PANEL_APPLICATIONS.map((application) => <li key={application}>{application}</li>)}
             </ul>
           </Reveal>
-          <Reveal className="ac-benefits__card" delay={0.16}>
+          <Reveal className="ac-benefits__card ac-benefits__card--custom" delay={0.16}>
+            <span className="ac-benefits__index">03 / Fabrication &amp; finish</span>
             <h3 className="ac-benefits__card-title">Fully customizable</h3>
-            <p className="ac-benefits__card-body">
-              120+ colours, CNC cutting, printed graphics, custom sizes, integrated lighting and installation across walls, ceilings, baffles and screens.
-            </p>
+            <p className="ac-benefits__metric"><strong>120+</strong><span>standard EP-series colours</span></p>
+            <ul className="ac-benefits__options">
+              {['CNC cutting', 'Printed graphics', 'Custom sizes', 'Integrated lighting', 'Walls, ceilings, baffles and screens'].map((option) => <li key={option}>{option}</li>)}
+            </ul>
           </Reveal>
         </div>
       </div>
