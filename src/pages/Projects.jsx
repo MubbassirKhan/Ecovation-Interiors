@@ -121,7 +121,7 @@ const FEATURED_PROJECTS = [
     gallery: [
       local('workspace/work1.jpg'),
       local('workspace/work4.jpg'),
-      local('workspace/work7'),
+      local('workspace/work8.jpg'),
       local('workspace/work10.jpg'),
       local('workspace/work16.jpg'),
     ],
