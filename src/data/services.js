@@ -21,7 +21,7 @@ export const HOME_SERVICES = [
     title: 'Residential',
     blurb:
       'Thoughtfully designed residential interiors combining aesthetics, comfort, sustainability and acoustic performance.',
-    image: '/Ecovation Images/residential/service.jpg',
+    image: IMAGES.residentialService,
     to: '/residential',
   },
   {
@@ -30,7 +30,7 @@ export const HOME_SERVICES = [
     title: 'PET Acoustic Panels',
     blurb:
       'Advanced sound solutions made from recycled PET for superior acoustic performance and sustainable interior design.',
-    image: '/Ecovation Images/acoustic-panels/acoustic_service.png',
+    image: IMAGES.acousticService,
     to: '/acoustic-panels',
   },
 ];

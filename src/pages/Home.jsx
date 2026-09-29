@@ -45,7 +45,7 @@ export default function Home() {
         email={{ href: CONTACT.emailHref, label: CONTACT.email }}
         phone={{ href: CONTACT.phoneHref, label: CONTACT.phoneDisplay }}
         note={CONTACT.address}
-        mediaSrc={encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/general/readytostart.png`)}
+        mediaSrc={encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/general/readytostart.webp`)}
         ctaLabel="Contact us"
         to="/contact"
       />

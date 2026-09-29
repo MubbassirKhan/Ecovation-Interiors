@@ -18,7 +18,7 @@ const PROJECT_TYPES = [
 ];
 
 const INITIAL = { name: '', email: '', phone: '', company: '', projectType: '', message: '' };
-const READY_TO_START_IMAGE = encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/general/readytostart.png`);
+const READY_TO_START_IMAGE = encodeURI(`${import.meta.env.BASE_URL}Ecovation Images/general/readytostart.webp`);
 
 function validate(values) {
   const errors = {};

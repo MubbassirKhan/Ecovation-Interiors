@@ -3,3 +3,15 @@ dist/
 .env
 .env.local
 .vite/
+/public/logo.webp
+/public/images/logo.webp
+/public/Ecovation Images/workspace/workspace_bg.webp
+/public/Ecovation Images/general/contact_bg.webp
+/public/Ecovation Images/general/Clientbg_image.webp
+/public/Ecovation Images/general/about.webp
+/public/Ecovation Images/acoustic-panels/acoustic_bg.webp
+/public/Ecovation Images/acoustic-panels/acoustic_service.webp
+/public/Ecovation Images/acoustic-panels/ceiling2.webp
+/public/Ecovation Images/residential/residential_bg.webp
+/public/Ecovation Images/residential/service.webp
+/public/Ecovation Images/general/readytostart.webp
